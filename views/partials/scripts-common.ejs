@@ -1,0 +1,63 @@
+<script>
+    // Set dynamic year
+    document.getElementById('copyright-year').textContent = `© ${new Date().getFullYear()} Dot Direction. All rights reserved.`;
+
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Micro-animations (Intersection Observer)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const fadeUpObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(element => {
+        fadeUpObserver.observe(element);
+    });
+
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+            navbar.classList.add('shadow-md', 'py-3');
+            navbar.classList.remove('py-4');
+        } else {
+            navbar.classList.add('py-4');
+            navbar.classList.remove('shadow-md', 'py-3');
+        }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
+    const iconX = document.getElementById('icon-x');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu() {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('flex');
+        iconMenu.classList.toggle('hidden');
+        iconX.classList.toggle('hidden');
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMenu);
+
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                toggleMenu();
+            }
+        });
+    });
+</script>

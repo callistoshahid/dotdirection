@@ -1,0 +1,55 @@
+<!-- Section 1: Utility Header & Navbar -->
+<div class="fixed w-full z-50">
+    <!-- Top Promo Bar -->
+    <div class="bg-slate-850 text-white text-xs md:text-sm font-medium text-center py-2 px-6 tracking-wide">
+        <%= site.promoText %> <span class="font-bold text-metallic-light"><%= site.promoCode %></span>
+    </div>
+
+    <!-- Main Navbar -->
+    <nav id="navbar" class="bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 py-4">
+        <div class="container mx-auto px-6 md:px-8 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2 cursor-pointer shrink-0">
+                <img src="<%= site.logoBlue %>" alt="Dot Direction"
+                    class="h-8 md:h-10 object-contain"
+                    onerror="this.onerror=null; this.src='<%= site.logoFallbackBlue %>';" />
+            </a>
+
+            <!-- Center Links -->
+            <div class="hidden lg:flex items-center gap-8 font-medium text-gray-600">
+                <% navLinks.forEach(link => { %>
+                    <a href="<%= link.href %>" class="hover:text-metallic transition-colors"><%= link.label %></a>
+                <% }); %>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="hidden lg:flex items-center gap-5">
+                <a href="<%= site.callNowHref %>" class="inline-block">
+                    <button
+                        class="bg-metallic hover:bg-metallic-hover text-white px-6 py-2.5 rounded-sm font-medium transition-colors shadow-md transform hover:-translate-y-0.5">
+                        Call Now
+                    </button>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-gray-800">
+                <i data-lucide="menu" id="icon-menu" class="w-7 h-7"></i>
+                <i data-lucide="x" id="icon-x" class="w-7 h-7 hidden"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex-col p-6 gap-6">
+            <% navLinks.forEach(link => { %>
+                <a href="<%= link.href %>" class="text-lg font-serif font-medium text-gray-800 mobile-link"><%= link.label %></a>
+            <% }); %>
+            <div class="h-px bg-gray-100 w-full"></div>
+            <a href="<%= site.whatsappHref || 'https://wa.me/' + site.whatsappNumber %>" target="_blank"
+                class="bg-metallic text-white px-5 py-4 rounded-sm font-medium text-lg w-full shadow-md text-center">
+                Book Now
+            </a>
+        </div>
+    </nav>
+</div>

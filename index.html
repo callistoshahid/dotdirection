@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dot Directions | Capturing Life’s Best Moments Across India</title>
+    <meta name="title" content="Dot Directions | Capturing Life’s Best Moments Across India">
+    <meta name="description"
+        content="Dot Directions is a vetted network of creative professionals across India. We help brands and individuals capture life's best moments through premium photography and videography.">
+    <meta name="keywords"
+        content="Dot Directions, photography India, videography services, creative network, professional photographers, brand storytelling, video production India">
+    <meta name="author" content="Dot Directions">
+
+    <link rel="icon" type="image/jpeg" href="/logo.jpeg">
+    <link rel="apple-touch-icon" href="/logo.jpeg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dotdirections.com/">
+    <meta property="og:title" content="Dot Directions | Capturing Life’s Best Moments">
+    <meta property="og:description"
+        content="Join thousands of brands and individuals across India capturing life's best moments with our vetted network of creators.">
+    <meta property="og:image" content="https://dotdirections.com/logo.jpeg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dotdirections.com/">
+    <meta property="twitter:title" content="Dot Directions | Professional Creative Network">
+    <meta property="twitter:description"
+        content="Premium photography and videography services across India. Capture your moments with our vetted professionals.">
+    <meta property="twitter:image" content="https://dotdirections.com/logo.jpeg">
+
+    <link rel="canonical" href="https://dotdirections.com/">
+
+    <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+    
+    
+    
+        /* Add these configurations to your Tailwind setup or a <style> block */
+        @layer utilities {
+            .animate-ethereal-up {
+                animation: etherealScrollUp 40s linear infinite;
+            }
+
+            .animate-ethereal-down {
+                animation: etherealScrollDown 40s linear infinite;
+            }
+        }
+
+        @keyframes etherealScrollUp {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes etherealScrollDown {
+            0% {
+                transform: translateY(-50%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Base resets and fonts */
+        .ethereal-body-lock {
+            font-family: 'Inter', sans-serif;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .ethereal-body-lock::-webkit-scrollbar {
+            display: none;
+        }
+
+        .font-ethereal-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+
+
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        metallic: {
+                            DEFAULT: '#788596',
+                            hover: '#636e7d',
+                            light: '#9ba6b5'
+                        },
+                        slate: {
+                            850: '#2B3044'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styling for native date picker */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+            z-index: 10;
+        }
+
+        /* Hide scrollbar for review section but allow scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Micro-animations: Fade Up on Scroll */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slick Slider Custom Styles */
+        .slick-prev:before,
+        .slick-next:before {
+            color: #788596;
+            font-size: 24px;
+        }
+
+        .slick-dots li button:before {
+            color: #788596;
+            font-size: 10px;
+        }
+
+        .slick-dots li.slick-active button:before {
+            color: #2B3044;
+        }
+
+        .slick-slide {
+            height: auto;
+            margin: 0 10px;
+            outline: none;
+        }
+
+        .slick-track {
+            display: flex !important;
+        }
+
+        .slick-slide>div {
+            height: 100%;
+            outline: none;
+        }
+
+        .slick-list {
+            padding: 1rem 0 2rem 0;
+        }
+
+        /* Hero & Fullscreen Slider overrides */
+        .hero-slider .slick-slide,
+        .fullscreen-slider .slick-slide {
+            margin: 0;
+        }
+
+        .hero-slider .slick-list,
+        .fullscreen-slider .slick-list {
+            padding: 0;
+            height: 100%;
+        }
+
+        .hero-slider .slick-track,
+        .fullscreen-slider .slick-track {
+            height: 100%;
+        }
+
+        .fullscreen-slider .slick-dots {
+            position: absolute;
+            bottom: 2rem;
+            z-index: 20;
+        }
+
+        .fullscreen-slider .slick-dots li button:before {
+            color: #ffffff;
+            opacity: 0.5;
+            font-size: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .fullscreen-slider .slick-dots li.slick-active button:before {
+            color: #ffffff;
+            opacity: 1;
+        }
+
+        /* 1. Kill the extra height caused by line-height/whitespace */
+        .fullscreen-slider .slick-track,
+        .fullscreen-slider .slick-list {
+            display: flex !important;
+            align-items: flex-start !important;
+        }
+
+        /* 2. Make the dots very small and elegant */
+        .fullscreen-slider .slick-dots {
+            bottom: 15px;
+            /* Adjust distance from bottom */
+        }
+
+        .fullscreen-slider .slick-dots li {
+            width: 6px;
+            /* Small hit area */
+            height: 6px;
+            margin: 0 4px;
+        }
+
+        .fullscreen-slider .slick-dots li button {
+            width: 6px;
+            height: 6px;
+            padding: 0;
+        }
+
+        .fullscreen-slider .slick-dots li button:before {
+            font-size: 4px;
+            /* The actual dot size */
+            width: 6px;
+            height: 6px;
+            line-height: 6px;
+            opacity: 0.3;
+            color: white;
+        }
+
+        .fullscreen-slider .slick-dots li.slick-active button:before {
+            opacity: 1;
+            color: white;
+        }
+    </style>
+    
+    
+    
+</head>
+
+<body class="font-sans text-[#333333] bg-white selection:bg-metallic-light selection:text-white overflow-x-hidden">
+
+
+
+    <!-- ======================================================= -->
+    <!-- COPY EVERYTHING BELOW THIS LINE INTO YOUR HTML BODY       -->
+    <!-- ======================================================= -->
+
+
+    
+    <!-- ======================================================= -->
+    <!-- DIVINE HERO SECTION                                     -->
+    <!-- ======================================================= -->
+    
+      
+
+    <!-- Single Main Wrapper DIV for the Popup -->
+    <div id="divine-popup-wrapper" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-700 p-4 sm:p-6">
+        
+        <!-- Popup Content Box -->
+        <div id="divine-popup-content" class="relative w-full max-w-sm sm:max-w-md bg-gradient-to-b from-orange-50 to-amber-100 rounded-3xl shadow-2xl border border-orange-200/60 p-6 sm:p-8 transform scale-95 transition-transform duration-700 text-center">
+            
+            <!-- Close 'X' Button -->
+            <button id="divine-popup-close" class="absolute top-4 right-4 text-orange-400 hover:text-orange-600 transition-colors p-1" aria-label="Close popup">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <!-- Decorative Icon -->
+            <div class="mx-auto w-16 h-16 bg-white text-orange-500 rounded-full flex items-center justify-center mb-5 shadow-[0_4px_15px_rgba(245,158,11,0.2)]">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+            </div>
+
+            <!-- Divine Copywriting -->
+            <h2 class="text-2xl sm:text-3xl font-bold text-orange-900 mb-3 font-serif">
+                ✨ Sacred Memories ✨
+            </h2>
+            <p class="text-orange-800/90 text-sm sm:text-base leading-relaxed mb-8">
+                Immerse yourself in the spiritual bliss of the <strong class="font-semibold text-orange-950">Shrimad Bhagwat Katha with Pujya Shri Indresh Ji Maharaj</strong>. Relive the divine moments and discover your captured devotion.
+            </p>
+
+            <!-- Call to Action Button -->
+            <a href="https://mystudioitsolutions.com/login?event_code=PS6256HID&date=1780486485523" target="_blank" class="inline-block w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-600 text-white font-semibold text-lg shadow-[0_8px_20px_rgba(245,158,11,0.4)] hover:shadow-[0_10px_25px_rgba(245,158,11,0.6)] hover:-translate-y-1 transition-all duration-300">
+                View Divine Photos
+            </a>
+        </div>
+    </div>
+
+    <!-- Script for Popup Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const popupWrapper = document.getElementById('divine-popup-wrapper');
+            const popupContent = document.getElementById('divine-popup-content');
+            const closeBtn = document.getElementById('divine-popup-close');
+
+            // Show animation
+            function showPopup() {
+                popupWrapper.classList.remove('opacity-0', 'pointer-events-none');
+                popupWrapper.classList.add('opacity-100', 'pointer-events-auto');
+                popupContent.classList.remove('scale-95');
+                popupContent.classList.add('scale-100');
+            }
+
+            // Hide animation
+            function hidePopup() {
+                popupWrapper.classList.remove('opacity-100', 'pointer-events-auto');
+                popupWrapper.classList.add('opacity-0', 'pointer-events-none');
+                popupContent.classList.remove('scale-100');
+                popupContent.classList.add('scale-95');
+            }
+
+            // Trigger popup exactly 5 seconds after page load
+            setTimeout(() => {
+                showPopup();
+            }, 15000);
+
+            // Close when clicking the 'X' button
+            closeBtn.addEventListener('click', hidePopup);
+
+            // Close when clicking outside the content (on the dark blurred background)
+            popupWrapper.addEventListener('click', (e) => {
+                if (e.target === popupWrapper) {
+                    hidePopup();
+                }
+            });
+        });
+    </script>
+
+    <!-- ======================================================= -->
+    <!-- END OF POPUP COPY SECTION                               -->
+    <!-- ======================================================= -->
+
+
+
+
+
+
+
+
+
+    <!-- Section 1: Utility Header & Navbar -->
+    <div class="fixed w-full z-50">
+        <!-- Top Promo Bar -->
+        <div class="bg-slate-850 text-white text-xs md:text-sm font-medium text-center py-2 px-6 tracking-wide">
+            Covering all of India. Get 10% off your first booking with code <span
+                class="font-bold text-metallic-light">DOT10</span>
+        </div>
+
+        <!-- Main Navbar -->
+        <nav id="navbar" class="bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 py-4">
+            <div class="container mx-auto px-6 md:px-8 flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 cursor-pointer shrink-0">
+                    <img src="https://dotdirections.com/logo-blue.png" alt="Dot Direction"
+                        class="h-8 md:h-10 object-contain"
+                        onerror="this.onerror=null; this.src='https://placehold.co/240x80/ffffff/333333?text=Dot+Direction&font=Playfair+Display';" />
+                </a>
+
+                <!-- Center Links -->
+                <div class="hidden lg:flex items-center gap-8 font-medium text-gray-600">
+                    <a href="#how-it-works" class="hover:text-metallic transition-colors">How it works</a>
+                    <a href="#services" class="hover:text-metallic transition-colors">Services</a>
+                    <a href="#pricing" class="hover:text-metallic transition-colors">Pricing</a>
+                    <a href="#reviews" class="hover:text-metallic transition-colors">Reviews</a>
+                    <a href="https://dotdirections.com/join-as-photographer.html" class="hover:text-metallic transition-colors">Apply to Join</a>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="hidden lg:flex items-center gap-5">
+                    <a href="tel:+916398962566" class="inline-block">
+                        <button
+                            class="bg-metallic hover:bg-metallic-hover text-white px-6 py-2.5 rounded-sm font-medium transition-colors shadow-md transform hover:-translate-y-0.5">
+                            Call Now
+                        </button>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-800">
+                    <i data-lucide="menu" id="icon-menu" class="w-7 h-7"></i>
+                    <i data-lucide="x" id="icon-x" class="w-7 h-7 hidden"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu"
+                class="hidden lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex-col p-6 gap-6">
+                <a href="#how-it-works" class="text-lg font-serif font-medium text-gray-800 mobile-link">How it
+                    works</a>
+                <a href="#services" class="text-lg font-serif font-medium text-gray-800 mobile-link">Services</a>
+                <a href="#pricing" class="text-lg font-serif font-medium text-gray-800 mobile-link">Pricing</a>
+                <a href="#reviews" class="text-lg font-serif font-medium text-gray-800 mobile-link">Reviews</a>
+                <a href="https://dotdirections.com/join-as-photographer.html" class="text-lg font-serif font-medium text-gray-800 mobile-link">Apply to Join</a>
+                <div class="h-px bg-gray-100 w-full"></div>
+                <button class="bg-metallic text-white px-5 py-4 rounded-sm font-medium text-lg w-full shadow-md">
+                    Book Now
+                </button>
+            </div>
+        </nav>
+    </div>
+
+
+
+
+
+
+    <div id="dot-hero-wrapper" class="relative w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-orange-50 via-amber-50 to-orange-100 px-4 py-24 sm:px-6 lg:px-8">
+        
+        <!-- Scoped Custom Styles with unique namespace -->
+        <style>
+            .dot-hero-font-serif {
+                font-family: 'Merriweather', serif;
+            }
+            
+            @keyframes dot-hero-float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            .dot-hero-animate-float {
+                animation: dot-hero-float 3s ease-in-out infinite;
+            }
+        </style>
+
+        <!-- Decorative Background Glowing Orbs -->
+        <div class="absolute top-50 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-orange-300/30 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-amber-400/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
+            
+            <!-- Decorative Icon -->
+            <div class="w-20 h-20 sm:w-24 sm:h-24 bg-white text-orange-500 rounded-full flex items-center justify-center mb-8 shadow-[0_8px_30px_rgba(245,158,11,0.2)] dot-hero-animate-float border border-orange-100">
+                <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+            </div>
+
+            <!-- Divine Copywriting -->
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-orange-950 mb-6 dot-hero-font-serif tracking-tight drop-shadow-sm">
+                ✨ Sacred Memories ✨
+            </h1>
+            
+            <p class="text-lg sm:text-xl md:text-2xl text-orange-800/90 leading-relaxed mb-10 max-w-2xl mx-auto font-medium" style="font-family: 'Inter', sans-serif;">
+                Immerse yourself in the spiritual bliss of the <br class="hidden sm:block" />
+                <strong class="font-bold text-orange-900">Shrimad Bhagwat Katha with Pujya Shri Indresh Ji Maharaj</strong>. <br class="hidden md:block" />
+                Relive the divine moments and discover your captured devotion.
+            </p>
+
+            <!-- Call to Action Button -->
+            <div class="w-full sm:w-auto flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://mystudioitsolutions.com/login?event_code=PS6256HID&date=1780486485523" target="_blank" class="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-amber-600 text-white font-bold text-lg sm:text-xl shadow-[0_8px_25px_rgba(245,158,11,0.4)] hover:shadow-[0_12px_35px_rgba(245,158,11,0.6)] hover:-translate-y-1 transition-all duration-300 ring-2 ring-white/20 ring-inset">
+                    View Divine Photos
+                    <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <main>
+        <!-- Section 2: Hero Section -->
+        <section
+            class="pt-32 pb-12 md:pt-40 md:pb-20 min-h-[100svh] flex items-center bg-[#F8F9FA] relative overflow-hidden">
+            <!-- Fluid background decorative shape -->
+            <div
+                class="absolute top-0 left-0 w-[500px] h-[500px] bg-metallic-light/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+            </div>
+
+            <div class="container mx-auto px-6 md:px-8 relative z-10 fade-up">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+
+                    <!-- Left Side: Content & Form -->
+                    <div class="w-full lg:w-1/2 flex flex-col justify-center pt-8 md:pt-0">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 w-fit mb-6 shadow-sm">
+                            <span class="relative flex h-2.5 w-2.5">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                            </span>
+                            <span class="text-xs font-semibold text-gray-600 uppercase tracking-wider">Available
+                                pan-India</span>
+                        </div>
+
+                        <h1
+                            class="font-serif text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 leading-[1.1] mb-6">
+                            Great photography,<br /><span class="italic text-metallic">made effortless.</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed font-light">
+                            Your unified platform for premium photography. Tell us your needs, get a dedicated RM, and receive perfectly edited memories.
+                        </p>
+
+
+                        <!-- Full Screen Mobile-Optimized Availability Form (WhatsApp Redirect) -->
+                        <div
+                            class="bg-white p-5 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] w-full max-w-xl border border-gray-100 relative z-20">
+                            <h3 class="font-serif text-xl font-medium mb-5 text-gray-800">Check availability</h3>
+
+                            <!-- Main Form -->
+                            <form id="booking-form" class="flex flex-col gap-5">
+                                <!-- Hidden input updated by JS dropdown -->
+                                <input type="hidden" name="Service Needed" id="hidden-service" value="Not Selected">
+
+                                <!-- Custom Creative Dropdown -->
+                                <div class="relative w-full">
+                                  <div class="flex items-center justify-between mb-1.5">
+    
+    <label
+        class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+        What do you need?
+    </label>
+
+    <a
+        href="https://dotdirections.com/#pricing"
+        class="text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-blue-700 transition-colors">
+        What we offer?
+    </a>
+
+</div>
+                                    <button type="button" id="service-dropdown-btn"
+                                        class="w-full flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 text-left focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                                        <div class="flex items-center text-gray-700 font-medium">
+                                            <i data-lucide="camera" class="w-5 h-5 mr-3 text-metallic"></i>
+                                            <span id="service-selected-text">Select service type</span>
+                                        </div>
+                                        <i data-lucide="chevron-down"
+                                            class="w-5 h-5 text-gray-400 transition-transform duration-300"
+                                            id="service-chevron"></i>
+                                    </button>
+
+                                    <!-- Custom Dropdown Menu -->
+                                    <div id="service-dropdown-menu"
+                                        class="hidden absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-xl border border-gray-100 z-50 p-2 flex flex-col gap-1 transform opacity-0 transition-opacity duration-200 max-h-64 overflow-y-auto">
+                                        
+                                        <!-- Spark -->
+                                        <div class="service-option flex items-center p-3 rounded-lg bg-gray-50 hover:bg-orange-50 cursor-pointer transition-colors border border-transparent hover:border-orange-200"
+                                            data-value="Spark (B2C)">
+                                            <i data-lucide="user" class="w-5 h-5 mr-3 text-orange-500 shrink-0"></i>
+                                            <div class="flex flex-col">
+                                                <span class="text-sm font-bold text-gray-900">Spark</span>
+                                                <span class="text-xs text-gray-500 font-medium">Portraits & Young Couples (B2C)</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Classic -->
+                                        <div class="service-option flex items-center p-3 rounded-lg bg-gray-50 hover:bg-orange-50 cursor-pointer transition-colors border border-transparent hover:border-orange-200"
+                                            data-value="Classic (B2C)">
+                                            <i data-lucide="users" class="w-5 h-5 mr-3 text-orange-500 shrink-0"></i>
+                                            <div class="flex flex-col">
+                                                <span class="text-sm font-bold text-gray-900">Classic</span>
+                                                <span class="text-xs text-gray-500 font-medium">Small Functions & Events (B2C)</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Premium -->
+                                        <div class="service-option flex items-center p-3 rounded-lg bg-gray-50 hover:bg-orange-50 cursor-pointer transition-colors border border-transparent hover:border-orange-200"
+                                            data-value="Premium (B2C)">
+                                            <i data-lucide="heart" class="w-5 h-5 mr-3 text-orange-500 shrink-0"></i>
+                                            <div class="flex flex-col">
+                                                <span class="text-sm font-bold text-gray-900">Premium</span>
+                                                <span class="text-xs text-gray-500 font-medium">Weddings (B2C)</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Influencer -->
+                                        <div class="service-option flex items-center p-3 rounded-lg bg-gray-50 hover:bg-blue-50 cursor-pointer transition-colors border border-transparent hover:border-blue-200"
+                                            data-value="Influencer (B2B)">
+                                            <i data-lucide="video" class="w-5 h-5 mr-3 text-blue-600 shrink-0"></i>
+                                            <div class="flex flex-col">
+                                                <span class="text-sm font-bold text-gray-900">Influencer</span>
+                                                <span class="text-xs text-gray-500 font-medium">Influencers & Creators (B2B)</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Platinum -->
+                                        <div class="service-option flex items-center p-3 rounded-lg bg-gray-50 hover:bg-blue-50 cursor-pointer transition-colors border border-transparent hover:border-blue-200"
+                                            data-value="Platinum (B2B)">
+                                            <i data-lucide="briefcase" class="w-5 h-5 mr-3 text-blue-600 shrink-0"></i>
+                                            <div class="flex flex-col">
+                                                <span class="text-sm font-bold text-gray-900">Platinum</span>
+                                                <span class="text-xs text-gray-500 font-medium">Brands & Agencies (B2B)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <!-- Where Input -->
+                                    <div class="w-full">
+                                        <label
+                                            class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Where
+                                            in India?</label>
+                                        <div class="relative">
+                                            <div
+                                                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                <i data-lucide="map-pin" class="w-5 h-5 text-metallic"></i>
+                                            </div>
+                                            <input type="text" id="form-location" name="Location" required
+                                                placeholder="e.g. Mumbai, Delhi"
+                                                class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-12 pr-4 py-3.5 text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all placeholder-gray-400 hover:bg-gray-100 focus:bg-white" />
+                                        </div>
+                                    </div>
+
+                                    <!-- When Datepicker -->
+                                    <div class="w-full relative">
+                                        <label
+                                            class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">When?</label>
+                                        <div
+                                            class="relative bg-gray-50 border border-gray-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-metallic/50 transition-all hover:bg-gray-100 focus-within:bg-white">
+                                            <div
+                                                class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-0">
+                                                <i data-lucide="calendar" class="w-5 h-5 text-metallic"></i>
+                                            </div>
+                                            <!-- Native date input styled beautifully -->
+                                            <input type="date" id="form-date" name="Date" required
+                                                placeholder="01-01-2027" class="w-full bg-transparent pl-12 pr-4 py-3.5 text-gray-700 font-medium focus:outline-none appearance-none relative z-10 cursor-pointer" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 flex flex-col sm:flex-row gap-4">
+                                    <button type="submit"
+                                        class="w-full bg-metallic hover:bg-metallic-hover text-white font-medium py-4 px-6 rounded-lg transition-all shadow-lg flex-1 transform hover:-translate-y-0.5 active:translate-y-0 active:shadow-md">
+                                        Submit Request
+                                    </button>
+                                    <a href="https://www.instagram.com/dot_direction/" target="_blank"
+                                        class="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 font-medium py-4 px-6 rounded-lg transition-all text-center flex items-center justify-center transform hover:-translate-y-0.5">
+                                        Browse Portfolio
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Hero Image Slider -->
+                    <div
+                        class="w-full lg:w-1/2 mt-10 lg:mt-0 relative h-[400px] lg:h-[600px] rounded-3xl md:rounded-[2rem] overflow-hidden shadow-2xl transform transition-transform duration-700 hover:scale-[1.02] bg-gray-100">
+                        <div class="hero-slider h-full w-full absolute inset-0 z-0">
+                            <!-- Image 1 -->
+                            <div class="h-full w-full">
+                                <img src="https://dotdirections.com/image%20(5).jpg" alt="Professional photography"
+                                    class="w-full h-full object-cover object-center" />
+                            </div>
+                            <!-- Image 2 -->
+                            <div class="h-full w-full">
+                                <img src="https://dotdirections.com/image%20(28).jpg" alt="Wedding photography"
+                                    class="w-full h-full object-cover object-center" />
+                            </div>
+                            <!-- Image 3 -->
+                            <div class="h-full w-full">
+                                <img src="https://dotdirections.com/image%20(12).jpg" alt="Corporate photography"
+                                    class="w-full h-full object-cover object-center" />
+                            </div>
+                            <!-- Image 4 -->
+                            <div class="h-full w-full">
+                                <img src="https://dotdirections.com/image%20(10).jpg" alt="Product photography"
+                                    class="w-full h-full object-cover object-center" />
+                            </div>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent z-10 pointer-events-none">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Social Proof Logo Strip -->
+        <section class="bg-gray-50 py-12 border-b border-gray-200 fade-up">
+            <div class="container mx-auto px-6 md:px-8 text-center">
+                <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-8">Trusted by thousands of
+                    modern brands & individuals</p>
+                <div
+                    class="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div
+                        class="text-2xl font-bold tracking-tight text-orange-600 transform transition hover:scale-105 cursor-default">
+                        pepperfry</div>
+                    <div
+                        class="text-lg font-serif tracking-widest uppercase text-gray-800 transform transition hover:scale-105 cursor-default">
+                        Alberto Torresi</div>
+                    <div
+                        class="text-xl font-bold lowercase tracking-tighter text-blue-600 flex items-center gap-1 transform transition hover:scale-105 cursor-default">
+                        amazon <span class="text-cyan-500 font-normal">prime</span></div>
+                    <div
+                        class="text-xl font-black italic uppercase tracking-wider text-yellow-600 transform transition hover:scale-105 cursor-default">
+                        BGMI</div>
+                    <div
+                        class="text-xl font-serif italic text-gray-800 transform transition hover:scale-105 cursor-default">
+                        Humans of Bombay</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Service Categories Grid (Tabs) -->
+        <section id="services" class="py-24 bg-white">
+            <div class="container mx-auto px-6 md:px-8 fade-up">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Top professionals for every
+                        occasion.</h2>
+                    <p class="text-lg text-gray-600 font-light mb-8">Whether you need an hour for a quick headshot or a
+                        whole day for your wedding, we've got you covered.</p>
+
+                    <!-- Tabs Header -->
+                    <div
+                        class="inline-flex bg-gray-100 p-1.5 rounded-full relative z-10 mb-10 w-full sm:w-auto justify-center">
+                        <button
+                            class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 text-white bg-metallic shadow-md w-1/2 sm:w-auto"
+                            data-target="tab-personal">Personal</button>
+                        <button
+                            class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 text-gray-600 hover:text-gray-900 w-1/2 sm:w-auto"
+                            data-target="tab-business">Business</button>
+                    </div>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="relative max-w-6xl mx-auto">
+
+                    <!-- Personal Tab -->
+                    <div id="tab-personal"
+                        class="tab-content grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 transition-all duration-500 transform translate-y-0 opacity-100">
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/image%20(8).jpg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Wedding</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/image%20(23).jpg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Engagement</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/image%20(38).jpg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Family</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/image%20(9).jpg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Personal</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/Graduation.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Graduation</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/Travel.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Travel</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/Couple.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Couple</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/Baby.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Baby</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/Maternity.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Maternity</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/7099921/pexels-photo-7099921.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Kids Party</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://dotdirections.com/Party.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Parties</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/1294062/pexels-photo-1294062.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Pet</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Business Tab -->
+                    <div id="tab-business"
+                        class="tab-content hidden grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 transition-all duration-500 transform translate-y-4 opacity-0">
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/8349344/pexels-photo-8349344.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Business Events</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/3797438/pexels-photo-3797438.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Headshots</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Corporate</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Property</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Food</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/8101532/pexels-photo-8101532.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Product</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/247616/pexels-photo-247616.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Lifestyle</h3>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('https://images.pexels.com/photos/5668839/pexels-photo-5668839.jpeg');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300">
+                            </div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3
+                                    class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20">
+                                    Volume Pricing</h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: "How It Works" (The Process) INTERACTIVE REDESIGN -->
+        <section id="how-it-works" class="py-24 bg-gray-50 border-y border-gray-100 overflow-hidden relative">
+            
+            <!-- Abstract background shape for tech feel -->
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 md:px-8 fade-up relative z-10 max-w-6xl">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-block bg-white text-metallic border border-gray-200 rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase mb-4 shadow-sm">Platform Architecture</span>
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">The Dot Process Engine.</h2>
+                    <p class="text-lg text-gray-600 font-light">A unified workflow designed for scale. Explore how our proprietary matching and rigorous quality controls deliver perfection every time.</p>
+                </div>
+
+                <!-- Interactive Process Tabs -->
+                <div class="relative w-full max-w-4xl mx-auto mb-12">
+                    <!-- Connecting line background (Desktop) -->
+                    <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-[2px] bg-gray-200 -z-10 -translate-y-1/2"></div>
+                    
+                    <div class="flex overflow-x-auto md:justify-center gap-3 sm:gap-6 pb-4 md:pb-0 snap-x hide-scrollbar">
+                        
+                        <!-- Tab 1 -->
+                        <button class="process-tab group relative flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 bg-slate-850 text-white shadow-xl scale-105 snap-center shrink-0 border border-transparent" data-target="phase-1-content">
+                            <span class="step-num w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-sm font-bold text-white transition-colors duration-300">1</span>
+                            <div class="text-left">
+                                <span class="tab-subtitle block text-xs uppercase tracking-wider font-semibold text-gray-300 mb-0.5">Phase 1</span>
+                                <span class="tab-title block text-sm sm:text-base font-bold whitespace-nowrap text-white">Discovery & Matching</span>
+                            </div>
+                        </button>
+
+                        <!-- Tab 2 -->
+                        <button class="process-tab group relative flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 bg-white shadow-sm hover:shadow border border-gray-200 snap-center shrink-0" data-target="phase-2-content">
+                            <span class="step-num w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm font-bold text-gray-500 transition-colors duration-300">2</span>
+                            <div class="text-left">
+                                <span class="tab-subtitle block text-xs uppercase tracking-wider font-semibold text-gray-400 mb-0.5">Phase 2</span>
+                                <span class="tab-title block text-sm sm:text-base font-bold whitespace-nowrap text-gray-800">Consultation & Booking</span>
+                            </div>
+                        </button>
+
+                        <!-- Tab 3 -->
+                        <button class="process-tab group relative flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 bg-white shadow-sm hover:shadow border border-gray-200 snap-center shrink-0" data-target="phase-3-content">
+                            <span class="step-num w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm font-bold text-gray-500 transition-colors duration-300">3</span>
+                            <div class="text-left">
+                                <span class="tab-subtitle block text-xs uppercase tracking-wider font-semibold text-gray-400 mb-0.5">Phase 3</span>
+                                <span class="tab-title block text-sm sm:text-base font-bold whitespace-nowrap text-gray-800">Execution & Delivery</span>
+                            </div>
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- Dynamic Content Container -->
+                <div class="relative w-full max-w-5xl mx-auto min-h-[300px]">
+                    
+                    <!-- Phase 1 Content (Active Default) -->
+                    <div id="phase-1-content" class="process-content grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-500 opacity-100 translate-y-0 block">
+                        <!-- Card A -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 1</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 to-metallic/50"></div>
+                            <div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6 text-metallic group-hover:scale-110 transition-transform">
+                                <i data-lucide="clipboard-list" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">Unified Platform Entry</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">Clients seamlessly submit specific requirements (Event Type, Location, Budget, Style) directly into our centralized data pipeline via search, social, or referral funnels.</p>
+                        </div>
+                        
+                        <!-- Card B -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 2</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-metallic/50 to-blue-400"></div>
+                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-blue-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="cpu" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">Algorithmic Availability Check</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">Our proprietary system instantly queries our vetted database, filtering top-tier creative partners against hyper-specific local availability, skill category, and exact budget parameters.</p>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2 Content (Hidden Default) -->
+                    <div id="phase-2-content" class="process-content grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-500 opacity-0 translate-y-4 hidden">
+                        <!-- Card C -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 3</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-indigo-500"></div>
+                            <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center mb-6 text-indigo-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="phone-call" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">Human-in-the-Loop Consultation</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">The internal DOT team initiates direct contact via preferred channels (WhatsApp/Call/Email). We finalize briefs, understand nuanced creative visions, and confirm optimized package routing.</p>
+                        </div>
+                        
+                        <!-- Card D -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 4</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+                            <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-6 text-purple-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">Secure Booking & Dedicated RM</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">Post-payment confirmation, the booking is secured. An exclusive Relationship Manager (RM) is automatically assigned to oversee total timeline coordination and stress-free project communication.</p>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3 Content (Hidden Default) - REDESIGNED TO MATCH -->
+                    <div id="phase-3-content" class="process-content grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-500 opacity-0 translate-y-4 hidden">
+                        <!-- Card E -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 5</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                            <div class="w-12 h-12 bg-pink-50 rounded-xl flex items-center justify-center mb-6 text-pink-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="camera" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">On-ground Execution</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">Vetted creative partners arrive on-site, executing comprehensive photography and videography flawlessly according to your dedicated RM's brief.</p>
+                        </div>
+                        
+                        <!-- Card F -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 6</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-rose-400"></div>
+                            <div class="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center mb-6 text-rose-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">Internal QA Pipeline</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">Rigorous internal review of all raw outputs. Our specialized editing team steps in to color-grade and ensure strict brand quality standards are met.</p>
+                        </div>
+
+                        <!-- Card G -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 7</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-400 to-orange-400"></div>
+                            <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-6 text-orange-500 group-hover:scale-110 transition-transform">
+                                <i data-lucide="cloud-download" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">Cloud Delivery</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">Delivery of high-resolution, perfected assets via secure Drive links alongside custom physical album options, within our promised timeline.</p>
+                        </div>
+
+                        <!-- Card H -->
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300">Step 8</div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-yellow-500"></div>
+                            <div class="w-12 h-12 bg-yellow-50 rounded-xl flex items-center justify-center mb-6 text-yellow-600 group-hover:scale-110 transition-transform">
+                                <i data-lucide="star" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3">CRM Integration & Feedback</h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed">Automated post-delivery check-ins collect vital feedback, updating our CRM database and inviting you to our scalable referral program.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Prominent Call-to-Action -->
+                <div class="mt-16 text-center">
+                    <a href="#booking-form" class="inline-flex items-center justify-center bg-slate-850 hover:bg-slate-900 text-white font-medium py-4 px-10 rounded-lg transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 text-lg group">
+                        Experience the Platform <i data-lucide="arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 6: Fullscreen Image Slider -->
+        <section class="w-full relative overflow-hidden bg-slate-900 fade-up leading-[0]">
+
+            <div class="fullscreen-slider w-full z-0">
+                <div class="outline-none"><img src="https://dotdirections.com/slider%20(1).jpeg"
+                        class="w-full h-auto block" onerror="this.src='https://dotdirections.com/slider%20(1).jpg'">
+                </div>
+                <div class="outline-none"><img src="https://dotdirections.com/slider%20(2).jpeg"
+                        class="w-full h-auto block" onerror="this.src='https://dotdirections.com/slider%20(2).jpg'">
+                </div>
+                <div class="outline-none"><img src="https://dotdirections.com/slider%20(3).jpeg"
+                        class="w-full h-auto block" onerror="this.src='https://dotdirections.com/slider%20(3).jpg'">
+                </div>
+                <div class="outline-none"><img src="https://dotdirections.com/slider%20(4).jpeg"
+                        class="w-full h-auto block" onerror="this.src='https://dotdirections.com/slider%20(4).jpg'">
+                </div>
+                <div class="outline-none"><img src="https://dotdirections.com/slider%20(5).jpeg"
+                        class="w-full h-auto block" onerror="this.src='https://dotdirections.com/slider%20(5).jpg'">
+                </div>
+                <div class="outline-none"><img src="https://dotdirections.com/slider%20(6).jpeg"
+                        class="w-full h-auto block" onerror="this.src='https://dotdirections.com/slider%20(6).jpg'">
+                </div>
+                <div class="outline-none"><img src="https://dotdirections.com/slider%20(7).jpeg"
+                        class="w-full h-auto block" onerror="this.src='https://dotdirections.com/slider%20(7).jpg'">
+                </div>
+            </div>
+
+            <div class="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
+        </section>
+
+        <!-- Section 7: Value Proposition & Features -->
+        <section class="py-24 bg-white fade-up">
+            <div class="container mx-auto px-6 md:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Why choose Dot Direction?
+                    </h2>
+                    <p class="text-lg text-gray-600 font-light">We're changing the way India captures memories and brand
+                        aesthetics.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+                    <!-- Prop 1 -->
+                    <div class="flex flex-col group">
+                        <i data-lucide="shield-check"
+                            class="w-10 h-10 text-metallic mb-6 transform transition-transform duration-300 group-hover:scale-110 group-hover:text-slate-850"></i>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mb-4">Vetted Partners & QA</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">We accept only top-tier professionals across India. Plus, our internal team rigorously reviews every output to ensure strict quality standards before delivery.</p>
+                        <a href="#"
+                            class="text-metallic font-medium hover:text-slate-850 flex items-center gap-1 mt-auto w-fit transition-colors group-hover:underline">Learn
+                            more <i data-lucide="arrow-right"
+                                class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+                    </div>
+
+                    <!-- Prop 2 -->
+                    <div class="flex flex-col group">
+                        <i data-lucide="phone-call"
+                            class="w-10 h-10 text-metallic mb-6 transform transition-transform duration-300 group-hover:scale-110 group-hover:text-slate-850"></i>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mb-4">Dedicated RM Support</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">Say goodbye to coordination stress. Every confirmed booking includes a Dedicated Relationship Manager handling timelines, shoot requirements, and seamless communication.</p>
+                        <a href="#"
+                            class="text-metallic font-medium hover:text-slate-850 flex items-center gap-1 mt-auto w-fit transition-colors group-hover:underline">Learn
+                            more <i data-lucide="arrow-right"
+                                class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+                    </div>
+
+                    <!-- Prop 3 -->
+                    <div class="flex flex-col group">
+                        <i data-lucide="wallet"
+                            class="w-10 h-10 text-metallic mb-6 transform transition-transform duration-300 group-hover:scale-110 group-hover:text-slate-850"></i>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mb-4">Transparent Pricing</h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6">From our B2C 'Spark' package to B2B 'Platinum' campaigns, see upfront pricing in INR. No negotiations, hidden fees, or surprise up-sells.</p>
+                        <a href="#"
+                            class="text-metallic font-medium hover:text-slate-850 flex items-center gap-1 mt-auto w-fit transition-colors group-hover:underline">Learn
+                            more <i data-lucide="arrow-right"
+                                class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- gallery -->
+        <div
+            class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#ffffff] ethereal-body-lock">
+
+            <!--<div class="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>-->
+            <!--<div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>-->
+
+            <div id="ethereal-gallery-mount"
+                class="relative w-full h-[150vh] -top-[25vh] flex gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-8 transform rotate-[-2deg] scale-105 group/gallery-master">
+            </div>
+        </div>
+
+
+        <!-- Section 8: Reviews & Customer Stories (Slick Slider) -->
+        <section id="reviews" class="py-24 bg-[#F8F9FA] overflow-hidden fade-up">
+            <div class="container mx-auto px-6 md:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Stories of impact across
+                        India.</h2>
+                </div>
+
+                <!-- Slick Slider Container -->
+                <div class="testimonial-slider max-w-6xl mx-auto px-4 md:px-8">
+
+                    <!-- Review Card 1 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"The
+                                process was completely frictionless. The photographer in Delhi captured our brand's
+                                essence perfectly, and the photos were ready before we even launched."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Sneha Sharma</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        Corporate Event</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 2 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"We
+                                booked last minute for a PR shoot in Mumbai. The pro was punctual, unobtrusive, and
+                                delivered stunning shots that elevated our release."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Rahul Verma</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        Corporate Headshots</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"Dot
+                                Direction is a lifesaver. Booking my maternity shoot in Bangalore took 2 minutes. The
+                                photographer made me feel beautiful and so comfortable."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Priya Desai</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        Maternity Shoot</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 4 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">
+                                "Incredible value and quality. We used Dot Direction for our restaurant menu revamp and
+                                the photos were simply mouth-watering. Highly recommended!"</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Arjun Singh</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">Food
+                                        & Restaurant</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 5 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"Our
+                                pre-wedding shoot was magical. The photographer knew exactly where the light hit best in
+                                Jaipur. Delivered ahead of time and beautifully edited."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Vikram Mehta</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        Pre-Wedding</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 6 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"Running
+                                a D2C brand means constant need for fresh content. Dot Direction makes scaling our
+                                product shoots so easy. Top notch service."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Ananya Rao</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        Product Shoot (D2C)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 7 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"I needed
+                                professional headshots for LinkedIn and my portfolio. My photographer guided me on poses
+                                and delivered crisp, premium edits."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Neha Gupta</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        Portrait / Headshots</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 8 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"As an
+                                architect, getting the right angles is crucial. The real estate photographer booked via
+                                Dot Direction had amazing gear and an eye for space."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Karthik Iyer</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">Real
+                                        Estate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 9 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"Booked a
+                                pro for my daughter's first birthday. They captured the most candid, wholesome moments
+                                without being intrusive. 10/10."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Ritu Agarwal</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        Birthday Party</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review Card 10 -->
+                    <div class="h-full">
+                        <div
+                            class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i><i data-lucide="star"
+                                    class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"We
+                                needed high-volume white-background catalog shots for Amazon. Dot Direction handled the
+                                bulk perfectly and delivered right on schedule."</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900">Sameer Jain</h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5">
+                                        E-Commerce Catalog</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Transparent Pricing -->
+        <section id="pricing" class="py-24 bg-white border-b border-gray-100 fade-up">
+            <div class="container mx-auto px-6 md:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Tailored pricing for every vision.</h2>
+                    <p class="text-lg text-gray-600 font-light">Whether capturing personal milestones or scaling a brand, our vetted teams deliver perfection at transparent rates.</p>
+                </div>
+
+                <!-- B2C Section -->
+                <div class="mb-20">
+                    <div class="text-center mb-10">
+                        <span class="inline-block bg-orange-50 text-orange-600 border border-orange-200 rounded-full px-4 py-1.5 text-sm font-semibold tracking-wider uppercase mb-3">Personal & Events (B2C)</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900">Capture Life's Milestones</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <!-- Spark -->
+                        <div class="border border-gray-200 rounded-2xl p-8 flex flex-col hover:border-orange-300 transition-all duration-300 hover:shadow-lg bg-white transform hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-serif text-2xl font-bold text-gray-900">Spark</h4>
+                                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded">B2C</span>
+                            </div>
+                            <p class="text-gray-500 text-sm font-light mb-6">Best for: <span class="font-medium text-gray-800">Portraits & Young Couples</span></p>
+                            <div class="mb-8">
+                                <span class="text-4xl font-bold text-gray-900">₹5,000</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 flex-1">
+                                <li class="flex items-start gap-3"><i data-lucide="user" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">1 Photographer</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="edit-3" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">Editor Included</span></li>
+                            </ul>
+                            <a href="https://wa.me/+916398962566" class="inline-block w-full"><button class="w-full border border-gray-300 text-gray-800 hover:bg-gray-50 font-medium py-3 px-4 rounded-lg transition-colors mt-auto">Book Spark</button></a>
+                        </div>
+
+                        <!-- Classic -->
+                        <div class="border-2 border-orange-400 rounded-2xl p-8 flex flex-col relative shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white transform md:-translate-y-2 hover:-translate-y-3 transition-transform duration-300">
+                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-5 rounded-full shadow-md">Most Popular</div>
+                            <div class="flex justify-between items-start mb-4 mt-2">
+                                <h4 class="font-serif text-2xl font-bold text-gray-900">Classic</h4>
+                                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded">B2C</span>
+                            </div>
+                            <p class="text-gray-500 text-sm font-light mb-6">Best for: <span class="font-medium text-gray-800">Small Functions & Events</span></p>
+                            <div class="mb-8">
+                                <span class="text-4xl font-bold text-gray-900">₹25k - ₹30k</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 flex-1">
+                                <li class="flex items-start gap-3"><i data-lucide="users" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">2-3 Photographers</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="briefcase" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">Project Manager</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="edit-3" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">Editor Included</span></li>
+                            </ul>
+                            <a href="https://wa.me/+916398962566" class="inline-block w-full"><button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-lg transition-colors mt-auto shadow-md">Book Classic</button></a>
+                        </div>
+
+                        <!-- Premium -->
+                        <div class="border border-gray-200 rounded-2xl p-8 flex flex-col hover:border-orange-300 transition-all duration-300 hover:shadow-lg bg-white transform hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-serif text-2xl font-bold text-gray-900">Premium</h4>
+                                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded">B2C</span>
+                            </div>
+                            <p class="text-gray-500 text-sm font-light mb-6">Best for: <span class="font-medium text-gray-800">Weddings</span></p>
+                            <div class="mb-8">
+                                <span class="text-4xl font-bold text-gray-900">₹1 Lac+</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 flex-1">
+                                <li class="flex items-start gap-3"><i data-lucide="camera" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">6-7 Photographers</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="briefcase" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">Project Manager</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="edit-3" class="w-5 h-5 text-orange-500 shrink-0"></i><span class="text-gray-600 font-light text-sm">Editor Included</span></li>
+                            </ul>
+                            <a href="https://wa.me/+916398962566" class="inline-block w-full"><button class="w-full border border-gray-300 text-gray-800 hover:bg-gray-50 font-medium py-3 px-4 rounded-lg transition-colors mt-auto">Book Premium</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B2B Section -->
+                <div>
+                    <div class="text-center mb-10">
+                        <span class="inline-block bg-blue-50 text-blue-600 border border-blue-200 rounded-full px-4 py-1.5 text-sm font-semibold tracking-wider uppercase mb-3">Business & Brands (B2B)</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900">Elevate Your Brand</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+                        <!-- Influencer -->
+                        <div class="border border-blue-200 rounded-2xl p-8 flex flex-col hover:border-blue-400 transition-all duration-300 hover:shadow-xl bg-gradient-to-b from-blue-50/50 to-white transform hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-serif text-2xl font-bold text-gray-900">Influencer</h4>
+                                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded">B2B</span>
+                            </div>
+                            <p class="text-gray-600 text-sm font-light mb-6">Best for: <span class="font-medium text-gray-900">Influencers & Creators</span></p>
+                            <div class="mb-8">
+                                <span class="text-4xl font-bold text-blue-900">₹4k - ₹7k</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 flex-1">
+                                <li class="flex items-start gap-3"><i data-lucide="user" class="w-5 h-5 text-blue-600 shrink-0"></i><span class="text-gray-700 font-light text-sm">1 Photographer</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="briefcase" class="w-5 h-5 text-blue-600 shrink-0"></i><span class="text-gray-700 font-light text-sm">Project Manager</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="edit-3" class="w-5 h-5 text-blue-600 shrink-0"></i><span class="text-gray-700 font-light text-sm">Editor Included</span></li>
+                            </ul>
+                            <a href="https://wa.me/+916398962566" class="inline-block w-full"><button class="w-full border-2 border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white font-medium py-3 px-4 rounded-lg transition-colors mt-auto">Book Influencer</button></a>
+                        </div>
+
+                        <!-- Platinum -->
+                        <div class="border-2 border-slate-850 rounded-2xl p-8 flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-slate-850 transform hover:-translate-y-1 transition-transform duration-300">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-serif text-2xl font-bold text-white">Platinum</h4>
+                                <span class="bg-slate-700 text-blue-300 text-xs font-bold px-2.5 py-1 rounded border border-slate-600">B2B</span>
+                            </div>
+                            <p class="text-gray-300 text-sm font-light mb-6">Best for: <span class="font-medium text-white">Brands & Agencies</span></p>
+                            <div class="mb-8">
+                                <span class="text-4xl font-bold text-white">₹1 Lac - ₹3 Lac</span>
+                            </div>
+                            <ul class="space-y-4 mb-8 flex-1">
+                                <li class="flex items-start gap-3"><i data-lucide="star" class="w-5 h-5 text-metallic-light shrink-0"></i><span class="text-gray-200 font-light text-sm">Flagship Photographer</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="briefcase" class="w-5 h-5 text-metallic-light shrink-0"></i><span class="text-gray-200 font-light text-sm">Project Manager</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="edit-3" class="w-5 h-5 text-metallic-light shrink-0"></i><span class="text-gray-200 font-light text-sm">Editor Included</span></li>
+                            </ul>
+                            <a href="https://wa.me/+916398962566" class="inline-block w-full"><button class="w-full bg-white hover:bg-gray-100 text-slate-900 font-bold py-3 px-4 rounded-lg transition-colors mt-auto shadow-md">Book Platinum</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Always Included Banner -->
+                <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-sm border border-gray-100 shadow-sm mt-8">
+                    <span class="font-semibold text-gray-800 uppercase tracking-wider text-xs">Always Included Across All Tiers:</span>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <div class="flex items-center gap-2 text-gray-600"><i data-lucide="shield-check" class="w-4 h-4 text-metallic"></i> Vetted Professionals</div>
+                        <div class="flex items-center gap-2 text-gray-600"><i data-lucide="image" class="w-4 h-4 text-metallic"></i> High-Res Delivery</div>
+                        <div class="flex items-center gap-2 text-gray-600"><i data-lucide="calendar-check" class="w-4 h-4 text-metallic"></i> Streamlined Booking</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Section 10: Final Pre-Footer CTA -->
+        <section class="py-32 text-center fade-up relative overflow-hidden bg-cover bg-center bg-no-repeat"
+            style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/prefooter.png'); padding-bottom:20rem !important; padding-top:3rem !important">
+            <div
+                class="absolute bottom-0 right-0 w-64 h-64 bg-metallic-light/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2">
+            </div>
+            <div class="container mx-auto px-6 md:px-8 max-w-3xl relative z-10">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-8">Ready to get started?</h2>
+                <p class="text-xl text-gray-600 font-light mb-10">Join thousands of brands and individuals across India
+                    who trust our unified platform, dedicated RMs, and vetted partners for capturing life's best moments.</p>
+                <button
+                    class="bg-metallic hover:bg-metallic-hover text-white font-medium text-lg py-4 px-10 rounded-sm transition-all shadow-lg shadow-metallic/30 transform hover:-translate-y-1">
+                    Book Your Shoot Now
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer: Massive SEO Silo Directory -->
+    <footer class="bg-[#1b222a] pt-16 pb-10 border-t-4 border-metallic">
+        <div class="container mx-auto px-6 md:px-8">
+
+            <!-- Footer Middle: Standard Links & Socials -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-b border-gray-800">
+
+                <!-- Logo & Socials -->
+                <div class="col-span-2 md:col-span-1">
+                    <img src="https://dotdirections.com/logo-white.png" alt="Dot Direction"
+                        class="h-10 object-contain mb-6 opacity-80"
+                        onerror="this.onerror=null; this.src='https://placehold.co/240x80/1b222a/9ba6b5?text=Dot+Direction&font=Playfair+Display';" />
+                    <p class="text-gray-500 font-light text-sm leading-relaxed max-w-xs mb-8">Connecting visionary
+                        clients
+                        with extraordinary visual artists across India. Quality guaranteed.</p>
+
+                    <!-- Social Icons -->
+                    <div class="flex items-center gap-5">
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/+916398962566" target="_blank"
+                            class="text-gray-400 hover:text-[#25D366] transition-colors duration-300" title="WhatsApp">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                            </svg>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/DotDirection.photography" target="_blank"
+                            class="text-gray-400 hover:text-[#1877F2] transition-colors duration-300" title="Facebook">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/dot_direction/" target="_blank"
+                            class="text-gray-400 hover:text-[#E4405F] transition-colors duration-300" title="Instagram">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <!-- Gmail -->
+                        <a href="mailto:dotdirection.in@gmail.com"
+                            class="text-gray-400 hover:text-[#EA4335] transition-colors duration-300" title="Email Us">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-metallic transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">How it Works</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Pricing in INR</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Careers in India</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide mb-6">For Professionals</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-metallic transition-colors">Apply as Talent</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Pro Dashboard</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Studio Partnerships</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Creator Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide mb-6">Support & Legal</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-metallic transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom: SEO Powerhouse Silo -->
+            <div class="py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Category 1: Locations -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">Top Locations</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Mumbai</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Delhi NCR</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Bangalore</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Pune</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Chennai</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Videographers in Hyderabad</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Category 2: Occasions -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">By Occasion</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Wedding Photography</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Corporate Event Photography</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Real Estate Photography</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Birthday Party Photographers</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Maternity & Newborn Shoots</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">E-Commerce Product Shoots</a></li>
+                    </ul>
+                </div>
+                <!-- Category 3: Pro Types -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">Hire Professionals</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Portrait Photographer</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire an Event Videographer</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Drone Operator</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Commercial Photographer</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Food Photographer</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Photo Editor</a></li>
+                    </ul>
+                </div>
+                <!-- Category 4: Guides -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">Guides & Resources</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">2026 Indian Photography
+                                Pricing</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">How to Prepare for a Headshot</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Wedding Photography Checklist</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Top Locations for Pre-Wedding
+                                Shoots</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Understanding Image Licensing in
+                                India</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Tips for Natural Lighting</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 border-t border-gray-800 text-center flex flex-col items-center">
+                <p id="copyright-year" class="text-gray-600 text-xs"></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <!-- jQuery and Slick Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        // Set dynamic year
+        document.getElementById('copyright-year').textContent = `© ${new Date().getFullYear()} Dot Direction. All rights reserved.`;
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Micro-animations (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const fadeUpObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(element => {
+            fadeUpObserver.observe(element);
+        });
+
+        // 2. Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md', 'py-3');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('shadow-md', 'py-3');
+            }
+        });
+
+        // 3. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenu = document.getElementById('icon-menu');
+        const iconX = document.getElementById('icon-x');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            iconMenu.classList.toggle('hidden');
+            iconX.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // 4. Custom Creative Dropdown Logic
+        const dropdownBtn = document.getElementById('service-dropdown-btn');
+        const dropdownMenu = document.getElementById('service-dropdown-menu');
+        const selectedText = document.getElementById('service-selected-text');
+        const serviceOptions = document.querySelectorAll('.service-option');
+        const chevron = document.getElementById('service-chevron');
+        const hiddenServiceInput = document.getElementById('hidden-service');
+
+        dropdownBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('hidden');
+            chevron.classList.toggle('rotate-180');
+
+            setTimeout(() => {
+                dropdownMenu.classList.toggle('opacity-0');
+            }, 10);
+
+            dropdownBtn.classList.toggle('ring-2');
+            dropdownBtn.classList.toggle('ring-metallic/50');
+        });
+
+        serviceOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const value = option.getAttribute('data-value');
+                selectedText.textContent = value;
+                selectedText.classList.add('text-gray-900', 'font-bold');
+
+                // Update hidden input
+                if (hiddenServiceInput) {
+                    hiddenServiceInput.value = value;
+                }
+
+                dropdownMenu.classList.add('opacity-0');
+                chevron.classList.remove('rotate-180');
+                setTimeout(() => {
+                    dropdownMenu.classList.add('hidden');
+                }, 200);
+
+                dropdownBtn.classList.remove('ring-2', 'ring-metallic/50');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                if (!dropdownMenu.classList.contains('hidden')) {
+                    dropdownMenu.classList.add('opacity-0');
+                    chevron.classList.remove('rotate-180');
+                    setTimeout(() => {
+                        dropdownMenu.classList.add('hidden');
+                    }, 200);
+                    dropdownBtn.classList.remove('ring-2', 'ring-metallic/50');
+                }
+            }
+        });
+
+        // WhatsApp Redirect Logic Form Submit
+        const bookingForm = document.getElementById('booking-form');
+        bookingForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const service = document.getElementById('hidden-service').value;
+            const location = document.getElementById('form-location').value;
+            const date = document.getElementById('form-date').value;
+
+            const customMessage = `Hi Dot Direction! I'm looking to book a shoot.\n\n*Service Needed:* ${service}\n*Location:* ${location}\n*Date:* ${date}\n\nPlease let me know the availability!`;
+            const encodedMessage = encodeURIComponent(customMessage);
+
+            const whatsappUrl = `https://wa.me/916398962566?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // 5. Tabs Logic for Services Section
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button styling
+                tabBtns.forEach(b => {
+                    b.classList.remove('text-white', 'bg-metallic', 'shadow-md');
+                    b.classList.add('text-gray-600');
+                });
+
+                btn.classList.add('text-white', 'bg-metallic', 'shadow-md');
+                btn.classList.remove('text-gray-600');
+
+                const targetId = btn.getAttribute('data-target');
+
+                // Update contents securely using Tailwind hidden vs grid classes to remove from DOM flow
+                tabContents.forEach(content => {
+                    if (content.id === targetId) {
+                        content.classList.remove('hidden');
+                        content.classList.add('grid');
+                        // Slight delay to allow display:grid to render before triggering opacity transition
+                        setTimeout(() => {
+                            content.classList.remove('opacity-0', 'translate-y-4');
+                            content.classList.add('opacity-100', 'translate-y-0');
+                        }, 50);
+                    } else {
+                        content.classList.add('hidden', 'opacity-0', 'translate-y-4');
+                        content.classList.remove('grid', 'opacity-100', 'translate-y-0');
+                    }
+                });
+            });
+        });
+        
+        // 5.5 Interactive Process Engine (How it works section)
+        const processTabs = document.querySelectorAll('.process-tab');
+        const processContents = document.querySelectorAll('.process-content');
+
+        processTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Determine target before resetting
+                const targetId = tab.getAttribute('data-target');
+
+                // 1. Reset all tabs to inactive state
+                processTabs.forEach(t => {
+                    t.classList.remove('bg-slate-850', 'shadow-xl', 'scale-105', 'border-transparent');
+                    t.classList.add('bg-white', 'hover:bg-gray-100', 'shadow-sm', 'hover:shadow', 'border-gray-200');
+                    
+                    const stepNum = t.querySelector('.step-num');
+                    stepNum.classList.remove('bg-white/20', 'text-white');
+                    stepNum.classList.add('bg-gray-100', 'text-gray-500');
+                    
+                    const subtitle = t.querySelector('.tab-subtitle');
+                    subtitle.classList.remove('text-gray-300');
+                    subtitle.classList.add('text-gray-400');
+                    
+                    const title = t.querySelector('.tab-title');
+                    title.classList.remove('text-white');
+                    title.classList.add('text-gray-800');
+                });
+
+                // 2. Hide all contents
+                processContents.forEach(c => {
+                    c.classList.add('opacity-0', 'translate-y-4');
+                    // wait for fade out before applying hidden
+                    setTimeout(() => {
+                        c.classList.add('hidden');
+                        c.classList.remove('block');
+                    }, 300);
+                });
+
+                // 3. Set clicked tab to active state
+                tab.classList.add('bg-slate-850', 'shadow-xl', 'scale-105', 'border-transparent');
+                tab.classList.remove('bg-white', 'hover:bg-gray-100', 'shadow-sm', 'hover:shadow', 'border-gray-200');
+                
+                const stepNum = tab.querySelector('.step-num');
+                stepNum.classList.add('bg-white/20', 'text-white');
+                stepNum.classList.remove('bg-gray-100', 'text-gray-500');
+                
+                const subtitle = tab.querySelector('.tab-subtitle');
+                subtitle.classList.add('text-gray-300');
+                subtitle.classList.remove('text-gray-400');
+                
+                const title = tab.querySelector('.tab-title');
+                title.classList.add('text-white');
+                title.classList.remove('text-gray-800');
+
+                // 4. Show target content
+                setTimeout(() => {
+                    const target = document.getElementById(targetId);
+                    target.classList.remove('hidden');
+                    target.classList.add('block');
+                    
+                    // slight delay to ensure display:block applies before animating opacity
+                    setTimeout(() => {
+                        target.classList.remove('opacity-0', 'translate-y-4');
+                        target.classList.add('opacity-100', 'translate-y-0');
+                    }, 50);
+                }, 300);
+            });
+        });
+
+        // 6. Initialize Slick Slider for Hero Section
+        $(document).ready(function () {
+            $('.hero-slider').slick({
+                dots: false,
+                infinite: true,
+                speed: 1000,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: false,
+                pauseOnHover: false
+            });
+        });
+
+        // 7. Initialize Slick Slider for Fullscreen Section
+        $(document).ready(function () {
+            $('.fullscreen-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 1000,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 4000,
+                arrows: false,
+                pauseOnHover: false,
+                adaptiveHeight: true
+            });
+        });
+
+        // 8. Initialize Slick Slider for Testimonials
+        $(document).ready(function () {
+            $('.testimonial-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 4000,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mount = document.getElementById('ethereal-gallery-mount');
+
+            const imageUrls = [
+                'https://dotdirections.com/image%20(1).jpg', 'https://dotdirections.com/image%20(2).jpg',
+                'https://dotdirections.com/image%20(3).jpg', 'https://dotdirections.com/image%20(4).jpg',
+                'https://dotdirections.com/image%20(5).jpg', 'https://dotdirections.com/image%20(6).jpg',
+                'https://dotdirections.com/image%20(7).jpg', 'https://dotdirections.com/image%20(8).jpg',
+                'https://dotdirections.com/image%20(9).jpg', 'https://dotdirections.com/image%20(36).jpg',
+                'https://dotdirections.com/image%20(37).jpg', 'https://dotdirections.com/image%20(38).jpg',
+                'https://dotdirections.com/image%20(39).jpg', 'https://dotdirections.com/image%20(40).jpg',
+                'https://dotdirections.com/image%20(41).jpg', 'https://dotdirections.com/image%20(42).jpg',
+                'https://dotdirections.com/image%20(43).jpg', 'https://dotdirections.com/image%20(44).jpg',
+                'https://dotdirections.com/image%20(45).jpg', 'https://dotdirections.com/image%20(46).jpg',
+                'https://dotdirections.com/image%20(32).jpg', 'https://dotdirections.com/image%20(10).jpg',
+                'https://dotdirections.com/image%20(11).jpg', 'https://dotdirections.com/image%20(12).jpg',
+                'https://dotdirections.com/image%20(13).jpg', 'https://dotdirections.com/image%20(14).jpg',
+                'https://dotdirections.com/image%20(15).jpg', 'https://dotdirections.com/image%20(16).jpg',
+                'https://dotdirections.com/image%20(17).jpg', 'https://dotdirections.com/image%20(18).jpg',
+                'https://dotdirections.com/image%20(19).jpg', 'https://dotdirections.com/image%20(20).jpg',
+                'https://dotdirections.com/image%20(21).jpg', 'https://dotdirections.com/image%20(22).jpg',
+                'https://dotdirections.com/image%20(23).jpg', 'https://dotdirections.com/image%20(24).jpg',
+                'https://dotdirections.com/image%20(25).jpg', 'https://dotdirections.com/image%20(26).jpg',
+                'https://dotdirections.com/image%20(27).jpg', 'https://dotdirections.com/image%20(28).jpg',
+                'https://dotdirections.com/image%20(29).jpg', 'https://dotdirections.com/image%20(30).jpg',
+                'https://dotdirections.com/image%20(31).jpg', 'https://dotdirections.com/image%20(32).jpg',
+                'https://dotdirections.com/image%20(33).jpg', 'https://dotdirections.com/image%20(34).jpg',
+                'https://dotdirections.com/image%20(35).jpg'
+            ];
+
+            const masonryHeights = ['h-64', 'h-80', 'h-96', 'h-[22rem]', 'h-[28rem]', 'h-[32rem]'];
+            let currentColumns = 0;
+
+            function getRequiredColumns() {
+                const w = window.innerWidth;
+                if (w < 640) return 2;
+                if (w < 768) return 3;
+                if (w < 1024) return 4;
+                if (w < 1280) return 5;
+                if (w < 1536) return 6;
+                return 7;
+            }
+
+            function buildEtherealGallery() {
+                const required = getRequiredColumns();
+                if (required === currentColumns) return;
+
+                currentColumns = required;
+                mount.innerHTML = '';
+
+                let imgIdx = 0;
+                for (let i = 0; i < required; i++) {
+                    const col = document.createElement('div');
+                    col.className = 'flex-1 flex flex-col gap-3 sm:gap-4 md:gap-6 min-w-[120px] sm:min-w-[150px]';
+
+                    const direction = i % 2 === 0 ? 'animate-ethereal-up' : 'animate-ethereal-down';
+                    const track = document.createElement('div');
+                    track.className = `flex flex-col gap-3 sm:gap-4 md:gap-6 w-full ${direction} group-hover/gallery-master:[animation-play-state:paused]`;
+
+                    let itemsHTML = '';
+                    for (let j = 0; j < 6; j++) {
+                        const h = masonryHeights[Math.floor(Math.random() * masonryHeights.length)];
+                        const url = imageUrls[imgIdx % imageUrls.length];
+                        imgIdx++;
+
+                        itemsHTML += `
+                    <div class="relative w-full ${h} rounded-2xl overflow-hidden cursor-pointer group/ethereal-item shadow-2xl transform transition-all duration-500 hover:scale-[1.02] hover:z-30 bg-zinc-900">
+                        <img src="${url}" alt="Gallery" class="w-full h-full object-cover filter brightness-75 group-hover/ethereal-item:brightness-110 transition-all duration-700" loading="lazy" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/ethereal-item:opacity-100 transition-opacity duration-500"></div>
+                    </div>`;
+                    }
+                    track.innerHTML = itemsHTML + itemsHTML; // Clone for seamless loop
+                    col.appendChild(track);
+                    mount.appendChild(col);
+                }
+            }
+
+            buildEtherealGallery();
+            let debounceTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(buildEtherealGallery, 250);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

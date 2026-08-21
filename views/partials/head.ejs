@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || site.homeTitle %></title>
+    <meta name="title" content="<%= title || site.homeTitle %>">
+    <meta name="description"
+        content="Dot Directions is a vetted network of creative professionals across India. We help brands and individuals capture life's best moments through premium photography and videography.">
+    <meta name="keywords"
+        content="Dot Directions, photography India, videography services, creative network, professional photographers, brand storytelling, video production India">
+    <meta name="author" content="Dot Directions">
+
+    <link rel="icon" type="image/jpeg" href="/logo.jpeg">
+    <link rel="apple-touch-icon" href="/logo.jpeg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dotdirections.com/">
+    <meta property="og:title" content="Dot Directions | Capturing Life's Best Moments">
+    <meta property="og:description"
+        content="Join thousands of brands and individuals across India capturing life's best moments with our vetted network of creators.">
+    <meta property="og:image" content="https://dotdirections.com/logo.jpeg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://dotdirections.com/">
+    <meta property="twitter:title" content="Dot Directions | Professional Creative Network">
+    <meta property="twitter:description"
+        content="Premium photography and videography services across India. Capture your moments with our vetted professionals.">
+    <meta property="twitter:image" content="https://dotdirections.com/logo.jpeg">
+
+    <link rel="canonical" href="https://dotdirections.com/">
+
+    <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Add these configurations to your Tailwind setup or a <style> block */
+        @layer utilities {
+            .animate-ethereal-up {
+                animation: etherealScrollUp 40s linear infinite;
+            }
+
+            .animate-ethereal-down {
+                animation: etherealScrollDown 40s linear infinite;
+            }
+        }
+
+        @keyframes etherealScrollUp {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes etherealScrollDown {
+            0% {
+                transform: translateY(-50%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Base resets and fonts */
+        .ethereal-body-lock {
+            font-family: 'Inter', sans-serif;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .ethereal-body-lock::-webkit-scrollbar {
+            display: none;
+        }
+
+        .font-ethereal-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        metallic: {
+                            DEFAULT: '#788596',
+                            hover: '#636e7d',
+                            light: '#9ba6b5'
+                        },
+                        slate: {
+                            850: '#2B3044'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styling for native date picker */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+            z-index: 10;
+        }
+
+        /* Hide scrollbar for review section but allow scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Micro-animations: Fade Up on Scroll */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slick Slider Custom Styles */
+        .slick-prev:before,
+        .slick-next:before {
+            color: #788596;
+            font-size: 24px;
+        }
+
+        .slick-dots li button:before {
+            color: #788596;
+            font-size: 10px;
+        }
+
+        .slick-dots li.slick-active button:before {
+            color: #2B3044;
+        }
+
+        .slick-slide {
+            height: auto;
+            margin: 0 10px;
+            outline: none;
+        }
+
+        .slick-track {
+            display: flex !important;
+        }
+
+        .slick-slide>div {
+            height: 100%;
+            outline: none;
+        }
+
+        .slick-list {
+            padding: 1rem 0 2rem 0;
+        }
+
+        /* Hero & Fullscreen Slider overrides */
+        .hero-slider .slick-slide,
+        .fullscreen-slider .slick-slide {
+            margin: 0;
+        }
+
+        .hero-slider .slick-list,
+        .fullscreen-slider .slick-list {
+            padding: 0;
+            height: 100%;
+        }
+
+        .hero-slider .slick-track,
+        .fullscreen-slider .slick-track {
+            height: 100%;
+        }
+
+        .fullscreen-slider .slick-dots {
+            position: absolute;
+            bottom: 2rem;
+            z-index: 20;
+        }
+
+        .fullscreen-slider .slick-dots li button:before {
+            color: #ffffff;
+            opacity: 0.5;
+            font-size: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .fullscreen-slider .slick-dots li.slick-active button:before {
+            color: #ffffff;
+            opacity: 1;
+        }
+
+        /* 1. Kill the extra height caused by line-height/whitespace */
+        .fullscreen-slider .slick-track,
+        .fullscreen-slider .slick-list {
+            display: flex !important;
+            align-items: flex-start !important;
+        }
+
+        /* 2. Make the dots very small and elegant */
+        .fullscreen-slider .slick-dots {
+            bottom: 15px;
+            /* Adjust distance from bottom */
+        }
+
+        .fullscreen-slider .slick-dots li {
+            width: 6px;
+            height: 6px;
+            margin: 0 4px;
+        }
+
+        .fullscreen-slider .slick-dots li button {
+            width: 6px;
+            height: 6px;
+            padding: 0;
+        }
+
+        .fullscreen-slider .slick-dots li button:before {
+            font-size: 4px;
+            width: 6px;
+            height: 6px;
+            line-height: 6px;
+            opacity: 0.3;
+            color: white;
+        }
+
+        .fullscreen-slider .slick-dots li.slick-active button:before {
+            opacity: 1;
+            color: white;
+        }
+    </style>
+</head>

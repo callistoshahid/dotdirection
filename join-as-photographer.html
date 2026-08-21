@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply as Talent | Dot Directions</title>
+    <meta name="title" content="Apply as Talent | Dot Directions">
+    <meta name="description" content="Join Dot Directions, India's elite network of vetted professional photographers and videographers.">
+    
+    <link rel="icon" type="image/jpeg" href="/logo.jpeg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        metallic: {
+                            DEFAULT: '#788596',
+                            hover: '#636e7d',
+                            light: '#9ba6b5'
+                        },
+                        slate: {
+                            850: '#2B3044'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Form Transitions */
+        .step-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease-in-out;
+        }
+        .step-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom Checkbox/Radio */
+        .custom-radio:checked + div {
+            border-color: #788596;
+            background-color: #f8fafc;
+        }
+        .custom-radio:checked + div .radio-dot {
+            background-color: #788596;
+            transform: scale(1);
+        }
+        .custom-checkbox:checked + div {
+            border-color: #788596;
+            background-color: #f8fafc;
+        }
+        .custom-checkbox:checked + div .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* File Upload */
+        input[type=file]::file-selector-button {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-[#333333] bg-[#F8F9FA] selection:bg-metallic-light selection:text-white">
+
+    <!-- Header & Navbar -->
+    <div class="fixed w-full z-50">
+        <div class="bg-slate-850 text-white text-xs md:text-sm font-medium text-center py-2 px-6 tracking-wide">
+            Covering all of India. Get 10% off your first booking with code <span class="font-bold text-metallic-light">DOT10</span>
+        </div>
+
+        <nav id="navbar" class="bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 py-4">
+            <div class="container mx-auto px-6 md:px-8 flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer shrink-0">
+                    <img src="https://dotdirections.com/logo-blue.png" alt="Dot Direction" class="h-8 md:h-10 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/240x80/ffffff/333333?text=Dot+Direction&font=Playfair+Display';" />
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8 font-medium text-gray-600">
+                    <a href="index.html#how-it-works" class="hover:text-metallic transition-colors">How it works</a>
+                    <a href="index.html#services" class="hover:text-metallic transition-colors">Services</a>
+                    <a href="index.html#pricing" class="hover:text-metallic transition-colors">Pricing</a>
+                    <a href="index.html#reviews" class="hover:text-metallic transition-colors">Reviews</a>
+                    <a href="https://dotdirections.com/join-as-photographer.html" class="hover:text-metallic transition-colors">Apply to Join</a>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-5">
+                    <a href="tel:+916398962566" class="inline-block">
+                        <button class="bg-metallic hover:bg-metallic-hover text-white px-6 py-2.5 rounded-sm font-medium transition-colors shadow-md transform hover:-translate-y-0.5">
+                            Call Now
+                        </button>
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-800">
+                    <i data-lucide="menu" id="icon-menu" class="w-7 h-7"></i>
+                    <i data-lucide="x" id="icon-x" class="w-7 h-7 hidden"></i>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex-col p-6 gap-6">
+                <a href="index.html#how-it-works" class="text-lg font-serif font-medium text-gray-800 mobile-link">How it works</a>
+                <a href="index.html#services" class="text-lg font-serif font-medium text-gray-800 mobile-link">Services</a>
+                <a href="index.html#pricing" class="text-lg font-serif font-medium text-gray-800 mobile-link">Pricing</a>
+                <a href="index.html#reviews" class="text-lg font-serif font-medium text-gray-800 mobile-link">Reviews</a>
+                <a href="https://dotdirections.com/join-as-photographer.html" class="text-lg font-serif font-medium text-gray-800 mobile-link">Apply to Join</a>
+                <div class="h-px bg-gray-100 w-full"></div>
+                <button class="bg-metallic text-white px-5 py-4 rounded-sm font-medium text-lg w-full shadow-md">Book Now</button>
+            </div>
+        </nav>
+    </div>
+
+    <main class="pt-24 md:pt-32 pb-20">
+        
+        <!-- Onboarding Hero -->
+        <section class="bg-slate-850 py-16 md:py-24 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+            <div class="container mx-auto px-6 md:px-8 relative z-10 text-center max-w-3xl">
+                <span class="inline-block bg-white/10 text-metallic-light border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase mb-6">Partner Application</span>
+                <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6">Join the Elite Network</h1>
+                <p class="text-gray-300 font-light text-lg md:text-xl leading-relaxed">
+                    Welcome! We are thrilled you want to join our network of elite photographers. To kick off your verification process, please fill out the details below. Once submitted, our team will review your portfolio and experience. If it’s a match, we will reach out to discuss rates, provide platform training, and get your profile live!
+                </p>
+            </div>
+        </section>
+
+        <!-- Multi-Step Form Section -->
+        <section class="container mx-auto px-4 md:px-8 -mt-8 md:-mt-12 relative z-20">
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 max-w-4xl mx-auto overflow-hidden">
+                
+                <!-- Progress Bar UI -->
+                <div class="bg-gray-50 border-b border-gray-100 px-6 py-6 md:px-10">
+                    <div class="flex items-center justify-between relative">
+                        <!-- Connecting Line -->
+                        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 rounded z-0"></div>
+                        <div id="progress-line" class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-metallic rounded z-0 transition-all duration-500" style="width: 0%;"></div>
+                        
+                        <!-- Steps -->
+                        <div class="relative z-10 flex flex-col items-center gap-2 step-indicator" data-step="1">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-metallic text-white flex items-center justify-center font-bold text-sm shadow-md transition-colors duration-300 border-4 border-gray-50"><i data-lucide="user" class="w-4 h-4"></i></div>
+                            <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-metallic hidden sm:block">Identity</span>
+                        </div>
+                        <div class="relative z-10 flex flex-col items-center gap-2 step-indicator" data-step="2">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center font-bold text-sm transition-colors duration-300 border-4 border-gray-50"><i data-lucide="camera" class="w-4 h-4"></i></div>
+                            <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 hidden sm:block">Gear</span>
+                        </div>
+                        <div class="relative z-10 flex flex-col items-center gap-2 step-indicator" data-step="3">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center font-bold text-sm transition-colors duration-300 border-4 border-gray-50"><i data-lucide="image" class="w-4 h-4"></i></div>
+                            <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 hidden sm:block">Portfolio</span>
+                        </div>
+                        <div class="relative z-10 flex flex-col items-center gap-2 step-indicator" data-step="4">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center font-bold text-sm transition-colors duration-300 border-4 border-gray-50"><i data-lucide="wallet" class="w-4 h-4"></i></div>
+                            <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 hidden sm:block">Terms</span>
+                        </div>
+                        <div class="relative z-10 flex flex-col items-center gap-2 step-indicator" data-step="5">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center font-bold text-sm transition-colors duration-300 border-4 border-gray-50"><i data-lucide="check-circle" class="w-4 h-4"></i></div>
+                            <span class="text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 hidden sm:block">Review</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Content -->
+                <form id="onboarding-form" class="p-6 md:p-10">
+                    
+                    <!-- Step 1: Basic Info -->
+                    <div id="step-1" class="step-content active">
+                        <div class="mb-8">
+                            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-2">Basic Information & Identity</h2>
+                            <p class="text-gray-500 font-light text-sm">This helps us verify your identity and match you with nearby leads.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Full Legal Name *</label>
+                                <input type="text" name="legalName" required placeholder="John Doe" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business/Studio Name</label>
+                                <input type="text" name="studioName" placeholder="JD Studios (Optional)" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Email Address *</label>
+                                <input type="email" name="email" required placeholder="john@example.com" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Phone / WhatsApp *</label>
+                                <input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Primary City / Base Location *</label>
+                            <input type="text" name="city" required placeholder="e.g. Mumbai, Delhi, Bangalore" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Government ID Upload *</label>
+                            <div class="relative group cursor-pointer">
+                                <input type="file" name="govId" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" accept=".pdf,.jpg,.jpeg,.png">
+                                <div class="w-full bg-gray-50 border-2 border-dashed border-gray-200 rounded-lg p-6 flex flex-col items-center justify-center text-center group-hover:bg-gray-100 group-hover:border-metallic/50 transition-all">
+                                    <i data-lucide="upload-cloud" class="w-8 h-8 text-metallic mb-2"></i>
+                                    <span class="text-sm font-medium text-gray-700">Click to upload or drag and drop</span>
+                                    <span class="text-xs text-gray-500 mt-1">PDF, JPG, or PNG (Max 5MB)</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-gray-400 mt-2 font-medium uppercase tracking-wide">Required for standard verification process</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Experience & Equipment -->
+                    <div id="step-2" class="step-content">
+                        <div class="mb-8">
+                            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-2">Experience & Equipment</h2>
+                            <p class="text-gray-500 font-light text-sm">Tell us about your gear and expertise to align you with the right events.</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">Years of Professional Experience *</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="experience" value="0-2 Years" class="custom-radio sr-only" required>
+                                    <div class="border border-gray-200 rounded-lg p-4 text-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mx-auto mb-2 flex items-center justify-center"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">0-2 Years</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="experience" value="3-5 Years" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 text-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mx-auto mb-2 flex items-center justify-center"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">3-5 Years</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="experience" value="6-10 Years" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 text-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mx-auto mb-2 flex items-center justify-center"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">6-10 Years</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="experience" value="10+ Years" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 text-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mx-auto mb-2 flex items-center justify-center"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">10+ Years</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">Primary Categories (Select all that apply) *</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="relative cursor-pointer">
+                                    <input type="checkbox" name="categories" value="Weddings" class="custom-checkbox sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-5 h-5 rounded border border-gray-300 mr-3 flex items-center justify-center bg-white"><i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i></div>
+                                        <span class="text-sm font-medium text-gray-800">Weddings & Pre-Weddings</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="checkbox" name="categories" value="Corporate" class="custom-checkbox sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-5 h-5 rounded border border-gray-300 mr-3 flex items-center justify-center bg-white"><i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i></div>
+                                        <span class="text-sm font-medium text-gray-800">Corporate Events</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="checkbox" name="categories" value="Parties" class="custom-checkbox sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-5 h-5 rounded border border-gray-300 mr-3 flex items-center justify-center bg-white"><i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i></div>
+                                        <span class="text-sm font-medium text-gray-800">Birthdays & Private Parties</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="checkbox" name="categories" value="Commercial" class="custom-checkbox sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-5 h-5 rounded border border-gray-300 mr-3 flex items-center justify-center bg-white"><i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i></div>
+                                        <span class="text-sm font-medium text-gray-800">Commercial / Product</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Camera Bodies *</label>
+                                <textarea name="cameraBodies" required placeholder="e.g. Sony A7IV, Canon R5, Nikon Z8" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100 min-h-[80px]"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Lenses & Lighting *</label>
+                                <textarea name="lenses" required placeholder="e.g. 24-70mm f/2.8, 85mm f/1.4, Godox AD200" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100 min-h-[80px]"></textarea>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Do you offer Videography / Drone services? *</label>
+                            <div class="flex gap-4">
+                                <label class="relative cursor-pointer flex-1">
+                                    <input type="radio" name="videoDrone" value="Yes" class="custom-radio sr-only" required>
+                                    <div class="border border-gray-200 rounded-lg p-3 text-center transition-all hover:border-gray-300 font-medium text-sm text-gray-800">Yes</div>
+                                </label>
+                                <label class="relative cursor-pointer flex-1">
+                                    <input type="radio" name="videoDrone" value="No" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-3 text-center transition-all hover:border-gray-300 font-medium text-sm text-gray-800">No</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Portfolio & Projects -->
+                    <div id="step-3" class="step-content">
+                        <div class="mb-8">
+                            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-2">Portfolio & Past Projects</h2>
+                            <p class="text-gray-500 font-light text-sm">Our QA team relies on this section to evaluate your consistency and style.</p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Online Portfolio / Website URL</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="globe" class="w-4 h-4 text-gray-400"></i></div>
+                                    <input type="url" name="portfolioUrl" placeholder="https://" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-11 pr-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Instagram / Social Media URL *</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="instagram" class="w-4 h-4 text-gray-400"></i></div>
+                                    <input type="url" name="socialUrl" required placeholder="https://instagram.com/..." class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-11 pr-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Full Past Project Link (Drive/Gallery) *</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><i data-lucide="folder" class="w-4 h-4 text-gray-400"></i></div>
+                                    <input type="url" name="driveUrl" required placeholder="https://drive.google.com/..." class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-11 pr-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-1.5 font-medium uppercase tracking-wide">Please share at least one complete event gallery to demonstrate consistency.</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Briefly describe your shooting style *</label>
+                                <textarea name="styleDesc" required placeholder="e.g. Candid, moody, highly produced, natural light focused..." class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100 min-h-[100px]"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Terms & Rates -->
+                    <div id="step-4" class="step-content">
+                        <div class="mb-8">
+                            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-2">Initial Rate & Terms</h2>
+                            <p class="text-gray-500 font-light text-sm">To prepare for our rate negotiation step, please provide your baseline expectations.</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Standard Per-Event Pricing (Starting Rate / Day in INR) *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><span class="text-gray-500 font-bold">₹</span></div>
+                                <input type="number" name="baseRate" required placeholder="e.g. 15000" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-9 pr-4 py-3.5 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Travel Terms *</label>
+                            <div class="flex flex-col gap-3">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="travelTerms" value="Base City Only" class="custom-radio sr-only" required>
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mr-3 flex items-center justify-center shrink-0"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">I only shoot in my base city.</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="travelTerms" value="Willing to Travel" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mr-3 flex items-center justify-center shrink-0"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">I am willing to travel (travel & accommodation must be provided).</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Editing Terms *</label>
+                            <div class="flex flex-col gap-3">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="editingTerms" value="Fully Edited" class="custom-radio sr-only" required>
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mr-3 flex items-center justify-center shrink-0"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">I provide fully edited photos/videos.</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="editingTerms" value="Raw Only" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mr-3 flex items-center justify-center shrink-0"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">I provide raw files only.</span>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="editingTerms" value="Both" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-4 flex items-center transition-all hover:border-gray-300">
+                                        <div class="w-4 h-4 rounded-full border border-gray-300 mr-3 flex items-center justify-center shrink-0"><div class="radio-dot w-2 h-2 rounded-full transform scale-0 transition-transform"></div></div>
+                                        <span class="text-sm font-medium text-gray-800">Both options available.</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Are you comfortable with our standard commission structure? *</label>
+                            <div class="flex gap-4">
+                                <label class="relative cursor-pointer flex-1">
+                                    <input type="radio" name="commission" value="Yes" class="custom-radio sr-only" required>
+                                    <div class="border border-gray-200 rounded-lg p-3 text-center transition-all hover:border-gray-300 font-medium text-sm text-gray-800">Yes</div>
+                                </label>
+                                <label class="relative cursor-pointer flex-1">
+                                    <input type="radio" name="commission" value="Let's Discuss" class="custom-radio sr-only">
+                                    <div class="border border-gray-200 rounded-lg p-3 text-center transition-all hover:border-gray-300 font-medium text-sm text-gray-800">Let's Discuss</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Acknowledgment -->
+                    <div id="step-5" class="step-content">
+                        <div class="mb-8">
+                            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-2">Acknowledgment of Platform Flow</h2>
+                            <p class="text-gray-500 font-light text-sm">Please confirm you understand how our platform works before submitting your application.</p>
+                        </div>
+
+                        <div class="space-y-4 mb-8">
+                            <label class="relative cursor-pointer flex items-start group">
+                                <input type="checkbox" name="ackTraining" value="true" class="custom-checkbox sr-only" required>
+                                <div class="w-5 h-5 rounded border border-gray-300 mt-0.5 mr-4 flex items-center justify-center bg-white shrink-0 group-hover:border-metallic transition-colors">
+                                    <i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-bold text-gray-900 block mb-1">Training & Quality</span>
+                                    <span class="text-sm text-gray-600 font-light leading-relaxed block">I understand that if verified, I must complete a brief training/course on platform SOPs, client handling, and delivery processes before my calendar goes live.</span>
+                                </div>
+                            </label>
+
+                            <label class="relative cursor-pointer flex items-start group">
+                                <input type="checkbox" name="ackCalendar" value="true" class="custom-checkbox sr-only" required>
+                                <div class="w-5 h-5 rounded border border-gray-300 mt-0.5 mr-4 flex items-center justify-center bg-white shrink-0 group-hover:border-metallic transition-colors">
+                                    <i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-bold text-gray-900 block mb-1">Calendar Management</span>
+                                    <span class="text-sm text-gray-600 font-light leading-relaxed block">I agree to keep my availability, busy dates, and travel plans updated in the calendar system to receive accurate lead allocations.</span>
+                                </div>
+                            </label>
+
+                            <label class="relative cursor-pointer flex items-start group">
+                                <input type="checkbox" name="ackPayment" value="true" class="custom-checkbox sr-only" required>
+                                <div class="w-5 h-5 rounded border border-gray-300 mt-0.5 mr-4 flex items-center justify-center bg-white shrink-0 group-hover:border-metallic transition-colors">
+                                    <i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-bold text-gray-900 block mb-1">Payment Terms</span>
+                                    <span class="text-sm text-gray-600 font-light leading-relaxed block">I understand that payment settlements are released only after quality approval and final delivery completion for each executed shoot.</span>
+                                </div>
+                            </label>
+
+                            <label class="relative cursor-pointer flex items-start group">
+                                <input type="checkbox" name="ackPerformance" value="true" class="custom-checkbox sr-only" required>
+                                <div class="w-5 h-5 rounded border border-gray-300 mt-0.5 mr-4 flex items-center justify-center bg-white shrink-0 group-hover:border-metallic transition-colors">
+                                    <i data-lucide="check" class="check-icon w-3 h-3 text-white opacity-0 transform scale-0 transition-all"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm font-bold text-gray-900 block mb-1">Performance</span>
+                                    <span class="text-sm text-gray-600 font-light leading-relaxed block">I understand that my profile will be subject to ongoing rating and performance tracking based on client feedback.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="pt-8 mt-4 border-t border-gray-100 flex items-center justify-between">
+                        <button type="button" id="prev-btn" class="hidden text-gray-500 hover:text-gray-900 font-medium px-4 py-2 transition-colors flex items-center gap-2">
+                            <i data-lucide="arrow-left" class="w-4 h-4"></i> Back
+                        </button>
+                        <!-- Spacer for flex justify when prev is hidden -->
+                        <div id="btn-spacer"></div>
+                        
+                        <button type="button" id="next-btn" class="bg-slate-850 hover:bg-slate-900 text-white font-medium py-3 px-8 rounded-lg transition-all shadow-md flex items-center gap-2">
+                            Next Step <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                        
+                        <button type="submit" id="submit-btn" class="hidden bg-metallic hover:bg-metallic-hover text-white font-bold py-3 px-10 rounded-lg transition-all shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5">
+                            Submit Application <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                </form>
+
+                <!-- Success State (Hidden initially) -->
+                <div id="success-state" class="hidden p-10 md:p-16 text-center">
+                    <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="check-circle" class="w-10 h-10 text-green-500"></i>
+                    </div>
+                    <h2 class="font-serif text-3xl font-bold text-gray-900 mb-4">Application Received!</h2>
+                    <p class="text-gray-600 font-light max-w-md mx-auto mb-8">
+                        Thank you for applying to join the Dot Direction network. Our internal QA team will review your portfolio and get back to you within 3-5 business days.
+                    </p>
+                    <a href="index.html" class="inline-block border border-gray-300 hover:bg-gray-50 text-gray-800 font-medium py-3 px-8 rounded-lg transition-all">
+                        Return to Homepage
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer: Massive SEO Silo Directory -->
+    <footer class="bg-[#1b222a] pt-16 pb-10 border-t-4 border-metallic">
+        <div class="container mx-auto px-6 md:px-8">
+
+            <!-- Footer Middle: Standard Links & Socials -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-b border-gray-800">
+
+                <!-- Logo & Socials -->
+                <div class="col-span-2 md:col-span-1">
+                    <img src="https://dotdirections.com/logo-white.png" alt="Dot Direction"
+                        class="h-10 object-contain mb-6 opacity-80"
+                        onerror="this.onerror=null; this.src='https://placehold.co/240x80/1b222a/9ba6b5?text=Dot+Direction&font=Playfair+Display';" />
+                    <p class="text-gray-500 font-light text-sm leading-relaxed max-w-xs mb-8">Connecting visionary
+                        clients
+                        with extraordinary visual artists across India. Quality guaranteed.</p>
+
+                    <!-- Social Icons -->
+                    <div class="flex items-center gap-5">
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/+916398962566" target="_blank"
+                            class="text-gray-400 hover:text-[#25D366] transition-colors duration-300" title="WhatsApp">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                            </svg>
+                        </a>
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/DotDirection.photography" target="_blank"
+                            class="text-gray-400 hover:text-[#1877F2] transition-colors duration-300" title="Facebook">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/dot_direction/" target="_blank"
+                            class="text-gray-400 hover:text-[#E4405F] transition-colors duration-300" title="Instagram">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <!-- Gmail -->
+                        <a href="mailto:dotdirection.in@gmail.com"
+                            class="text-gray-400 hover:text-[#EA4335] transition-colors duration-300" title="Email Us">
+                            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-metallic transition-colors">About Us</a></li>
+                        <li><a href="index.html#how-it-works" class="hover:text-metallic transition-colors">How it Works</a></li>
+                        <li><a href="index.html#pricing" class="hover:text-metallic transition-colors">Pricing in INR</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Careers in India</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide mb-6">For Professionals</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-metallic transition-colors text-white">Apply as Talent</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Pro Dashboard</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Studio Partnerships</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Creator Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold tracking-wide mb-6">Support & Legal</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="#" class="hover:text-metallic transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-metallic transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom: SEO Powerhouse Silo -->
+            <div class="py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Category 1: Locations -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">Top Locations</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Mumbai</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Delhi NCR</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Bangalore</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Pune</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Photographers in Chennai</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Videographers in Hyderabad</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Category 2: Occasions -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">By Occasion</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Wedding Photography</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Corporate Event Photography</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Real Estate Photography</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Birthday Party Photographers</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Maternity & Newborn Shoots</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">E-Commerce Product Shoots</a></li>
+                    </ul>
+                </div>
+                <!-- Category 3: Pro Types -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">Hire Professionals</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Portrait Photographer</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire an Event Videographer</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Drone Operator</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Commercial Photographer</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Food Photographer</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Hire a Photo Editor</a></li>
+                    </ul>
+                </div>
+                <!-- Category 4: Guides -->
+                <div>
+                    <h5 class="text-gray-300 font-semibold text-sm mb-4">Guides & Resources</h5>
+                    <ul class="space-y-2 text-xs text-gray-500">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">2026 Indian Photography
+                                Pricing</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">How to Prepare for a Headshot</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Wedding Photography Checklist</a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Top Locations for Pre-Wedding
+                                Shoots</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Understanding Image Licensing in
+                                India</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors">Tips for Natural Lighting</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 border-t border-gray-800 text-center flex flex-col items-center">
+                <p id="copyright-year" class="text-gray-600 text-xs"></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic year
+        document.getElementById('copyright-year').textContent = `© ${new Date().getFullYear()} Dot Direction. All rights reserved.`;
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md', 'py-3');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('shadow-md', 'py-3');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconMenu = document.getElementById('icon-menu');
+        const iconX = document.getElementById('icon-x');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            iconMenu.classList.toggle('hidden');
+            iconX.classList.toggle('hidden');
+        });
+
+        // --- Multi-Step Form Logic ---
+        const totalSteps = 5;
+        let currentStep = 1;
+
+        const form = document.getElementById('onboarding-form');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnSpacer = document.getElementById('btn-spacer');
+        const progressBar = document.getElementById('progress-line');
+        const stepIndicators = document.querySelectorAll('.step-indicator');
+
+        function updateFormUI() {
+            // Hide all steps, show current
+            document.querySelectorAll('.step-content').forEach((el, index) => {
+                if (index + 1 === currentStep) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active');
+                }
+            });
+
+            // Update Progress Bar Width
+            const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+
+            // Update Step Indicators (Colors)
+            stepIndicators.forEach((el, index) => {
+                const stepNum = index + 1;
+                const iconContainer = el.querySelector('div');
+                const textLabel = el.querySelector('span');
+                
+                if (stepNum < currentStep) {
+                    // Completed
+                    iconContainer.className = "w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-850 text-white flex items-center justify-center font-bold text-sm shadow-md transition-colors duration-300 border-4 border-gray-50";
+                    textLabel.className = "text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-850 hidden sm:block";
+                    iconContainer.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i>';
+                } else if (stepNum === currentStep) {
+                    // Current
+                    iconContainer.className = "w-8 h-8 md:w-10 md:h-10 rounded-full bg-metallic text-white flex items-center justify-center font-bold text-sm shadow-md transition-colors duration-300 border-4 border-gray-50 ring-4 ring-metallic/20";
+                    textLabel.className = "text-[10px] md:text-xs font-bold uppercase tracking-wider text-metallic hidden sm:block";
+                    
+                    // Restore original icon based on step
+                    const icons = ['user', 'camera', 'image', 'wallet', 'check-circle'];
+                    iconContainer.innerHTML = `<i data-lucide="${icons[index]}" class="w-4 h-4"></i>`;
+                } else {
+                    // Upcoming
+                    iconContainer.className = "w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center font-bold text-sm transition-colors duration-300 border-4 border-gray-50";
+                    textLabel.className = "text-[10px] md:text-xs font-bold uppercase tracking-wider text-gray-400 hidden sm:block";
+                    const icons = ['user', 'camera', 'image', 'wallet', 'check-circle'];
+                    iconContainer.innerHTML = `<i data-lucide="${icons[index]}" class="w-4 h-4"></i>`;
+                }
+            });
+            lucide.createIcons(); // Re-initialize icons
+
+            // Button Visibility
+            if (currentStep === 1) {
+                prevBtn.classList.add('hidden');
+                btnSpacer.classList.remove('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+                btnSpacer.classList.add('hidden');
+            }
+
+            if (currentStep === totalSteps) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+            
+            // Scroll to top of form
+            const offset = form.parentElement.offsetTop - 100;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+
+        // Basic Validation per step before proceeding
+        function validateCurrentStep() {
+            const currentStepEl = document.getElementById(`step-${currentStep}`);
+            const inputs = currentStepEl.querySelectorAll('input[required], textarea[required], select[required]');
+            let isValid = true;
+            
+            // For radio groups, we need to check if at least one is checked if it's required
+            const radioGroups = {};
+
+            inputs.forEach(input => {
+                if (input.type === 'radio') {
+                    if(!radioGroups[input.name]) { radioGroups[input.name] = false; }
+                    if(input.checked) { radioGroups[input.name] = true; }
+                } else if (!input.checkValidity()) {
+                    isValid = false;
+                    input.reportValidity();
+                }
+            });
+
+            // Check if required radio groups are satisfied
+            for (const groupName in radioGroups) {
+                const radios = currentStepEl.querySelectorAll(`input[name="${groupName}"]`);
+                if(radios.length > 0 && radios[0].hasAttribute('required') && !radioGroups[groupName]) {
+                    isValid = false;
+                    // Trigger validation message on the first radio of the group
+                    radios[0].reportValidity();
+                }
+            }
+
+            return isValid;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (validateCurrentStep()) {
+                currentStep++;
+                updateFormUI();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentStep--;
+            updateFormUI();
+        });
+
+        // Form Submission Logic
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if(!validateCurrentStep()) return;
+
+            // 1. Gather all form data
+            const formData = new FormData(form);
+            const dataObject = {};
+            
+            // Handle multiple checkboxes (like Categories) properly
+            for (let [key, value] of formData.entries()) {
+                if (dataObject[key]) {
+                    if (!Array.isArray(dataObject[key])) {
+                        dataObject[key] = [dataObject[key]];
+                    }
+                    dataObject[key].push(value);
+                } else {
+                    dataObject[key] = value;
+                }
+            }
+
+            console.log("Database Submission Payload:", dataObject);
+            
+            // 2. Change Submit Button State (Loading UI)
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+            lucide.createIcons();
+
+            // 3. Mock API Call to Database (Replace with actual fetch/Firebase call later)
+            setTimeout(() => {
+                // On Success: Hide Form, Show Success Message
+                document.querySelector('.bg-gray-50.border-b').style.display = 'none'; // hide progress bar
+                form.style.display = 'none';
+                document.getElementById('success-state').classList.remove('hidden');
+                
+                // Scroll up slightly to view the success message
+                window.scrollTo({ top: document.getElementById('success-state').parentElement.offsetTop - 100, behavior: 'smooth' });
+            }, 1500);
+        });
+
+        // Init UI on load
+        updateFormUI();
+
+    </script>
+</body>
+</html>

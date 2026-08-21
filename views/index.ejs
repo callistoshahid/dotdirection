@@ -1,0 +1,744 @@
+<%- include('partials/head.ejs') %>
+
+<body class="font-sans text-[#333333] bg-white selection:bg-metallic-light selection:text-white overflow-x-hidden">
+
+    <%- include('partials/navbar.ejs') %>
+
+    <!-- ======================================================= -->
+    <!-- LEAD CAPTURE POPUP (Quick Name + Phone Form)            -->
+    <!-- ======================================================= -->
+    <div id="lead-popup-wrapper" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4 sm:p-6">
+        <div id="lead-popup-content" class="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl p-6 sm:p-8 transform scale-95 transition-transform duration-300 text-center">
+            <!-- Close Button -->
+            <button id="lead-popup-close" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors p-1" aria-label="Close popup">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <!-- Decorative Icon -->
+            <div class="mx-auto w-14 h-14 bg-metallic/10 text-metallic rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="camera" class="w-7 h-7"></i>
+            </div>
+
+            <h2 class="font-serif text-2xl font-bold text-gray-900 mb-2">Book Your Shoot</h2>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                Get 10% off your first booking. Share your details and our team will call you back.
+            </p>
+
+            <!-- Quick Form: Name + Phone -->
+            <form id="lead-form" class="flex flex-col gap-4 text-left">
+                <div>
+                    <label for="lead-name" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Your Name</label>
+                    <input type="text" id="lead-name" name="name" required placeholder="Enter your name"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all" />
+                </div>
+                <div>
+                    <label for="lead-phone" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Phone Number</label>
+                    <input type="tel" id="lead-phone" name="phone" required placeholder="+91 XXXXX XXXXX"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all" />
+                </div>
+                <button type="submit"
+                    class="w-full bg-metallic hover:bg-metallic-hover text-white font-semibold py-3.5 rounded-lg transition-all shadow-lg transform hover:-translate-y-0.5">
+                    Get a Call Back
+                </button>
+                <div id="lead-form-status" class="hidden text-sm font-medium rounded-lg p-3"></div>
+            </form>
+
+            <!-- Success State -->
+            <div id="lead-success" class="hidden text-center">
+                <div class="mx-auto w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mb-4">
+                    <i data-lucide="check-circle" class="w-7 h-7 text-green-500"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
+                <p class="text-gray-500 text-sm">Our team will call you shortly to confirm your booking.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.getElementById('lead-popup-wrapper');
+            const content = document.getElementById('lead-popup-content');
+            const closeBtn = document.getElementById('lead-popup-close');
+            const leadForm = document.getElementById('lead-form');
+            const leadFormStatus = document.getElementById('lead-form-status');
+            const leadSuccess = document.getElementById('lead-success');
+
+            function showPopup() {
+                wrapper.classList.remove('opacity-0', 'pointer-events-none');
+                wrapper.classList.add('opacity-100', 'pointer-events-auto');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }
+
+            function hidePopup() {
+                wrapper.classList.remove('opacity-100', 'pointer-events-auto');
+                wrapper.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+            }
+
+            // Open popup after 3 seconds
+            setTimeout(showPopup, 3000);
+
+            // Close handlers
+            closeBtn.addEventListener('click', hidePopup);
+            wrapper.addEventListener('click', (e) => {
+                if (e.target === wrapper) { hidePopup(); }
+            });
+
+            // Submit quick lead form
+            leadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('lead-name').value.trim();
+                const phone = document.getElementById('lead-phone').value.trim();
+
+                if (!name || !phone) {
+                    leadFormStatus.classList.remove('hidden');
+                    leadFormStatus.classList.add('bg-red-50', 'text-red-700');
+                    leadFormStatus.textContent = 'Please enter both your name and phone number.';
+                    return;
+                }
+
+                const submitBtn = leadForm.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                try {
+                    const res = await fetch('/api/lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, phone })
+                    });
+                    const result = await res.json();
+
+                    if (result.success) {
+                        leadForm.classList.add('hidden');
+                        leadSuccess.classList.remove('hidden');
+                        lucide.createIcons();
+                        setTimeout(hidePopup, 2500);
+                    } else {
+                        throw new Error(result.message || 'Submission failed.');
+                    }
+                } catch (err) {
+                    leadFormStatus.classList.remove('hidden');
+                    leadFormStatus.classList.add('bg-red-50', 'text-red-700');
+                    leadFormStatus.textContent = err.message || 'Something went wrong. Please try again.';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get a Call Back';
+                }
+            });
+        });
+    </script>
+
+    <main>
+        <!-- Section 2: Hero Section -->
+        <section class="pt-32 pb-12 md:pt-40 md:pb-20 min-h-[100svh] flex items-center bg-[#F8F9FA] relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-metallic-light/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 md:px-8 relative z-10 fade-up">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+
+                    <!-- Left Side: Content & Form -->
+                    <div class="w-full lg:w-1/2 flex flex-col justify-center pt-8 md:pt-0">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 w-fit mb-6 shadow-sm">
+                            <span class="relative flex h-2.5 w-2.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                            </span>
+                            <span class="text-xs font-semibold text-gray-600 uppercase tracking-wider">Available pan-India</span>
+                        </div>
+
+                        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 leading-[1.1] mb-6">
+                            Great photography,<br /><span class="italic text-metallic">made effortless.</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed font-light">
+                            Your unified platform for premium photography. Tell us your needs, get a dedicated RM, and receive perfectly edited memories.
+                        </p>
+
+                        <!-- Availability Form -->
+                        <div class="bg-white p-5 md:p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] w-full max-w-xl border border-gray-100 relative z-20">
+                            <h3 class="font-serif text-xl font-medium mb-5 text-gray-800">Check availability</h3>
+
+                            <form id="booking-form" class="flex flex-col gap-5">
+                                <input type="hidden" name="service" id="hidden-service" value="Not Selected">
+
+                                <!-- Custom Creative Dropdown -->
+                                <div class="relative w-full">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider">What do you need?</label>
+                                        <a href="/#pricing" class="text-xs font-semibold text-gray-500 uppercase tracking-wider hover:text-blue-700 transition-colors">What we offer?</a>
+                                    </div>
+                                    <button type="button" id="service-dropdown-btn"
+                                        class="w-full flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 text-left focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all hover:bg-gray-100">
+                                        <div class="flex items-center text-gray-700 font-medium">
+                                            <i data-lucide="camera" class="w-5 h-5 mr-3 text-metallic"></i>
+                                            <span id="service-selected-text">Select service type</span>
+                                        </div>
+                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform duration-300" id="service-chevron"></i>
+                                    </button>
+
+                                    <div id="service-dropdown-menu"
+                                        class="hidden absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-xl border border-gray-100 z-50 p-2 flex flex-col gap-1 transform opacity-0 transition-opacity duration-200 max-h-64 overflow-y-auto">
+                                        <% availabilityServices.forEach(svc => { %>
+                                        <div class="service-option flex items-center p-3 rounded-lg bg-gray-50 <%= svc.hoverClass %> cursor-pointer transition-colors border border-transparent"
+                                            data-value="<%= svc.value %>">
+                                            <i data-lucide="<%= svc.icon %>" class="w-5 h-5 mr-3 <%= svc.colorClass %> shrink-0"></i>
+                                            <div class="flex flex-col">
+                                                <span class="text-sm font-bold text-gray-900"><%= svc.name %></span>
+                                                <span class="text-xs text-gray-500 font-medium"><%= svc.desc %></span>
+                                            </div>
+                                        </div>
+                                        <% }); %>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    <div class="w-full">
+                                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Where in India?</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                <i data-lucide="map-pin" class="w-5 h-5 text-metallic"></i>
+                                            </div>
+                                            <input type="text" id="form-location" name="location" required placeholder="e.g. Mumbai, Delhi" class="w-full bg-gray-50 border border-gray-200 rounded-lg pl-12 pr-4 py-3.5 text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-metallic/50 transition-all placeholder-gray-400 hover:bg-gray-100 focus:bg-white" />
+                                        </div>
+                                    </div>
+                                    <div class="w-full relative">
+                                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">When?</label>
+                                        <div class="relative bg-gray-50 border border-gray-200 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-metallic/50 transition-all hover:bg-gray-100 focus-within:bg-white">
+                                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-0">
+                                                <i data-lucide="calendar" class="w-5 h-5 text-metallic"></i>
+                                            </div>
+                                            <input type="date" id="form-date" name="date" required placeholder="01-01-2027" class="w-full bg-transparent pl-12 pr-4 py-3.5 text-gray-700 font-medium focus:outline-none appearance-none relative z-10 cursor-pointer" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 flex flex-col sm:flex-row gap-4">
+                                    <button type="submit"
+                                        class="w-full bg-metallic hover:bg-metallic-hover text-white font-medium py-4 px-6 rounded-lg transition-all shadow-lg flex-1 transform hover:-translate-y-0.5 active:translate-y-0 active:shadow-md">
+                                        Submit Request
+                                    </button>
+                                    <a href="https://www.instagram.com/dot_direction/" target="_blank"
+                                        class="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 font-medium py-4 px-6 rounded-lg transition-all text-center flex items-center justify-center transform hover:-translate-y-0.5">
+                                        Browse Portfolio
+                                    </a>
+                                </div>
+                                <div id="booking-status" class="hidden text-sm font-medium rounded-lg p-3"></div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Hero Slider -->
+                    <div class="w-full lg:w-1/2 mt-10 lg:mt-0 relative h-[400px] lg:h-[600px] rounded-3xl md:rounded-[2rem] overflow-hidden shadow-2xl transform transition-transform duration-700 hover:scale-[1.02] bg-gray-100">
+                        <div class="hero-slider h-full w-full absolute inset-0 z-0">
+                            <% heroSlides.forEach(slide => { %>
+                            <div class="h-full w-full">
+                                <img src="<%= slide.src %>" alt="<%= slide.alt %>" class="w-full h-full object-cover object-center" />
+                            </div>
+                            <% }); %>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent z-10 pointer-events-none"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Social Proof Logo Strip -->
+        <section class="bg-gray-50 py-12 border-b border-gray-200 fade-up">
+            <div class="container mx-auto px-6 md:px-8 text-center">
+                <p class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-8">Trusted by thousands of modern brands & individuals</p>
+                <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 lg:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                    <% brandLogos.forEach(logo => { %>
+                    <div class="<%= logo.className %> transform transition hover:scale-105 cursor-default">
+                        <%- logo.text %>
+                        <% if (logo.suffix) { %><span class="<%= logo.suffix.className %>"> <%= logo.suffix.text %></span><% } %>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Service Categories Grid (Tabs) -->
+        <section id="services" class="py-24 bg-white">
+            <div class="container mx-auto px-6 md:px-8 fade-up">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Top professionals for every occasion.</h2>
+                    <p class="text-lg text-gray-600 font-light mb-8">Whether you need an hour for a quick headshot or a whole day for your wedding, we've got you covered.</p>
+
+                    <div class="inline-flex bg-gray-100 p-1.5 rounded-full relative z-10 mb-10 w-full sm:w-auto justify-center">
+                        <button class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 text-white bg-metallic shadow-md w-1/2 sm:w-auto" data-target="tab-personal">Personal</button>
+                        <button class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 text-gray-600 hover:text-gray-900 w-1/2 sm:w-auto" data-target="tab-business">Business</button>
+                    </div>
+                </div>
+
+                <div class="relative max-w-6xl mx-auto">
+                    <div id="tab-personal" class="tab-content grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 transition-all duration-500 transform translate-y-0 opacity-100">
+                        <% services.filter(s => s.tab === 'personal').forEach(svc => { %>
+                        <div class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('<%= svc.image %>');">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300"></div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3 class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20"><%= svc.title %></h3>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+
+                    <div id="tab-business" class="tab-content hidden grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 transition-all duration-500 transform translate-y-4 opacity-0">
+                        <% services.filter(s => s.tab === 'business').forEach(svc => { %>
+                        <div class="group relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-110 group-hover:blur-[3px] brightness-90 group-hover:brightness-75"
+                                style="background-image:url('<%= svc.image %>');">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-90 transition-opacity duration-300"></div>
+                            <div class="absolute z-20 bottom-0 left-0 p-3 md:p-5 w-full flex items-end">
+                                <h3 class="font-serif text-sm md:text-base font-medium text-gray-900 bg-white/95 backdrop-blur-sm py-2 px-4 rounded-xl shadow-sm transition-all duration-300 group-hover:bg-metallic group-hover:text-white group-hover:scale-105 origin-bottom-left border border-white/20"><%= svc.title %></h3>
+                            </div>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: How It Works -->
+        <section id="how-it-works" class="py-24 bg-gray-50 border-y border-gray-100 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+
+            <div class="container mx-auto px-6 md:px-8 fade-up relative z-10 max-w-6xl">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-block bg-white text-metallic border border-gray-200 rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase mb-4 shadow-sm">Platform Architecture</span>
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">The Dot Process Engine.</h2>
+                    <p class="text-lg text-gray-600 font-light">A unified workflow designed for scale. Explore how our proprietary matching and rigorous quality controls deliver perfection every time.</p>
+                </div>
+
+                <div class="relative w-full max-w-4xl mx-auto mb-12">
+                    <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-[2px] bg-gray-200 -z-10 -translate-y-1/2"></div>
+                    <div class="flex overflow-x-auto md:justify-center gap-3 sm:gap-6 pb-4 md:pb-0 snap-x hide-scrollbar">
+                        <% processSteps.forEach((phase, idx) => { %>
+                        <button class="process-tab group relative flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 snap-center shrink-0 border <%= phase.active ? 'bg-slate-850 text-white shadow-xl scale-105 border-transparent' : 'bg-white shadow-sm hover:shadow border-gray-200 text-gray-800' %>" data-target="<%= phase.id %>">
+                            <span class="step-num w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 <%= phase.active ? 'bg-white/20 text-white' : 'bg-gray-100 text-gray-500' %>"><%= idx + 1 %></span>
+                            <div class="text-left">
+                                <span class="tab-subtitle block text-xs uppercase tracking-wider font-semibold mb-0.5 <%= phase.active ? 'text-gray-300' : 'text-gray-400' %>"><%= phase.phaseLabel %></span>
+                                <span class="tab-title block text-sm sm:text-base font-bold whitespace-nowrap <%= phase.active ? 'text-white' : 'text-gray-800' %>"><%= phase.title %></span>
+                            </div>
+                        </button>
+                        <% }); %>
+                    </div>
+                </div>
+
+                <div class="relative w-full max-w-5xl mx-auto min-h-[300px]">
+                    <% processSteps.forEach(phase => { %>
+                    <div id="<%= phase.id %>" class="process-content grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-500 <%= phase.active ? 'opacity-100 translate-y-0 block' : 'opacity-0 translate-y-4 hidden' %>">
+                        <% phase.cards.forEach(card => { %>
+                        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-metallic/30 transition-colors relative overflow-hidden group">
+                            <div class="absolute top-5 right-5 bg-gray-50 border border-gray-100 text-gray-500 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 group-hover:bg-metallic group-hover:text-white transition-colors duration-300"><%= card.step %></div>
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r <%= card.gradient %>"></div>
+                            <div class="w-12 h-12 <%= card.iconBg %> rounded-xl flex items-center justify-center mb-6 <%= card.iconColor %> group-hover:scale-110 transition-transform">
+                                <i data-lucide="<%= card.icon %>" class="w-6 h-6"></i>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-gray-900 mb-3"><%= card.heading %></h4>
+                            <p class="text-gray-600 font-light text-sm leading-relaxed"><%= card.body %></p>
+                        </div>
+                        <% }); %>
+                    </div>
+                    <% }); %>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <a href="#booking-form" class="inline-flex items-center justify-center bg-slate-850 hover:bg-slate-900 text-white font-medium py-4 px-10 rounded-lg transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 text-lg group">
+                        Experience the Platform <i data-lucide="arrow-right" class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Fullscreen Image Slider -->
+        <section class="w-full relative overflow-hidden bg-slate-900 fade-up leading-[0]">
+            <div class="fullscreen-slider w-full z-0">
+                <% fullscreenSlides.forEach(slide => { %>
+                <div class="outline-none"><img src="<%= slide.src %>" class="w-full h-auto block" onerror="this.src='<%= slide.fallback %>'"></div>
+                <% }); %>
+            </div>
+            <div class="absolute inset-0 bg-black/20 pointer-events-none z-10"></div>
+        </section>
+
+        <!-- Section 7: Value Proposition & Features -->
+        <section class="py-24 bg-white fade-up">
+            <div class="container mx-auto px-6 md:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Why choose Dot Direction?</h2>
+                    <p class="text-lg text-gray-600 font-light">We're changing the way India captures memories and brand aesthetics.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+                    <% valueProps.forEach(prop => { %>
+                    <div class="flex flex-col group">
+                        <i data-lucide="<%= prop.icon %>" class="w-10 h-10 text-metallic mb-6 transform transition-transform duration-300 group-hover:scale-110 group-hover:text-slate-850"></i>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mb-4"><%= prop.heading %></h3>
+                        <p class="text-gray-600 font-light leading-relaxed mb-6"><%= prop.body %></p>
+                        <a href="#" class="text-metallic font-medium hover:text-slate-850 flex items-center gap-1 mt-auto w-fit transition-colors group-hover:underline">Learn more <i data-lucide="arrow-right" class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i></a>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <div class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#ffffff] ethereal-body-lock">
+            <div id="ethereal-gallery-mount"
+                class="relative w-full h-[150vh] -top-[25vh] flex gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-8 transform rotate-[-2deg] scale-105 group/gallery-master">
+            </div>
+        </div>
+
+        <!-- Section 8: Reviews -->
+        <section id="reviews" class="py-24 bg-[#F8F9FA] overflow-hidden fade-up">
+            <div class="container mx-auto px-6 md:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Stories of impact across India.</h2>
+                </div>
+
+                <div class="testimonial-slider max-w-6xl mx-auto px-4 md:px-8">
+                    <% testimonials.forEach(t => { %>
+                    <div class="h-full">
+                        <div class="bg-white p-8 md:p-10 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col h-full mx-2 transition-transform duration-300 hover:-translate-y-1">
+                            <div class="flex text-[#00b67a] mb-6">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i><i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                            <p class="font-serif text-xl text-gray-800 leading-relaxed mb-10 italic flex-grow">"<%= t.quote %>"</p>
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <h4 class="font-bold text-gray-900"><%= t.name %></h4>
+                                    <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold mt-0.5"><%= t.role %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Transparent Pricing -->
+        <section id="pricing" class="py-24 bg-white border-b border-gray-100 fade-up">
+            <div class="container mx-auto px-6 md:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Tailored pricing for every vision.</h2>
+                    <p class="text-lg text-gray-600 font-light">Whether capturing personal milestones or scaling a brand, our vetted teams deliver perfection at transparent rates.</p>
+                </div>
+
+                <!-- B2C Section -->
+                <div class="mb-20">
+                    <div class="text-center mb-10">
+                        <span class="inline-block bg-orange-50 text-orange-600 border border-orange-200 rounded-full px-4 py-1.5 text-sm font-semibold tracking-wider uppercase mb-3">Personal & Events (B2C)</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900">Capture Life's Milestones</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <% pricingPlans.b2c.forEach(plan => { %>
+                        <div class="<%= plan.highlight ? 'border-2 border-orange-400 rounded-2xl p-8 flex flex-col relative shadow-[0_8px_30px_rgb(0,0,0,0.08)] bg-white transform md:-translate-y-2 hover:-translate-y-3 transition-transform duration-300' : 'border border-gray-200 rounded-2xl p-8 flex flex-col hover:border-orange-300 transition-all duration-300 hover:shadow-lg bg-white transform hover:-translate-y-1' %>">
+                            <% if (plan.popular) { %>
+                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold uppercase tracking-wider py-1.5 px-5 rounded-full shadow-md"><%= plan.popular %></div>
+                            <% } %>
+                            <div class="flex justify-between items-start mb-4 <%= plan.popular ? 'mt-2' : '' %>">
+                                <h4 class="font-serif text-2xl font-bold text-gray-900"><%= plan.name %></h4>
+                                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2.5 py-1 rounded"><%= plan.badge %></span>
+                            </div>
+                            <p class="text-gray-500 text-sm font-light mb-6">Best for: <span class="font-medium text-gray-800"><%= plan.bestFor %></span></p>
+                            <div class="mb-8"><span class="text-4xl font-bold text-gray-900"><%= plan.price %></span></div>
+                            <ul class="space-y-4 mb-8 flex-1">
+                                <% plan.features.forEach(f => { %>
+                                <li class="flex items-start gap-3"><i data-lucide="<%= f.icon %>" class="w-5 h-5 <%= f.color %> shrink-0"></i><span class="text-gray-600 font-light text-sm"><%= f.text %></span></li>
+                                <% }); %>
+                            </ul>
+                            <a href="https://wa.me/<%= site.whatsappNumber %>" class="inline-block w-full"><button class="w-full <%= plan.ctaClass %> font-medium py-3 px-4 rounded-lg transition-colors mt-auto"><%= plan.cta %></button></a>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+
+                <!-- B2B Section -->
+                <div>
+                    <div class="text-center mb-10">
+                        <span class="inline-block bg-blue-50 text-blue-600 border border-blue-200 rounded-full px-4 py-1.5 text-sm font-semibold tracking-wider uppercase mb-3">Business & Brands (B2B)</span>
+                        <h3 class="font-serif text-2xl font-bold text-gray-900">Elevate Your Brand</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+                        <% pricingPlans.b2b.forEach(plan => { %>
+                        <div class="<%= plan.dark ? 'border-2 border-slate-850 rounded-2xl p-8 flex flex-col shadow-[0_8px_30px_rgb(0,0,0,0.12)] bg-slate-850 transform hover:-translate-y-1 transition-transform duration-300' : 'border border-blue-200 rounded-2xl p-8 flex flex-col hover:border-blue-400 transition-all duration-300 hover:shadow-xl bg-gradient-to-b from-blue-50/50 to-white transform hover:-translate-y-1' %>">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-serif text-2xl font-bold <%= plan.dark ? 'text-white' : 'text-gray-900' %>"><%= plan.name %></h4>
+                                <span class="<%= plan.dark ? 'bg-slate-700 text-blue-300 text-xs font-bold px-2.5 py-1 rounded border border-slate-600' : 'bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded' %>"><%= plan.badge %></span>
+                            </div>
+                            <p class="<%= plan.dark ? 'text-gray-300' : 'text-gray-600' %> text-sm font-light mb-6">Best for: <span class="font-medium <%= plan.dark ? 'text-white' : 'text-gray-900' %>"><%= plan.bestFor %></span></p>
+                            <div class="mb-8"><span class="text-4xl font-bold <%= plan.dark ? 'text-white' : 'text-blue-900' %>"><%= plan.price %></span></div>
+                            <ul class="space-y-4 mb-8 flex-1">
+                                <% plan.features.forEach(f => { %>
+                                <li class="flex items-start gap-3"><i data-lucide="<%= f.icon %>" class="w-5 h-5 <%= f.color %> shrink-0"></i><span class="<%= plan.dark ? 'text-gray-200' : 'text-gray-700' %> font-light text-sm"><%= f.text %></span></li>
+                                <% }); %>
+                            </ul>
+                            <a href="https://wa.me/<%= site.whatsappNumber %>" class="inline-block w-full"><button class="w-full <%= plan.ctaClass %> font-medium py-3 px-4 rounded-lg transition-colors mt-auto"><%= plan.cta %></button></a>
+                        </div>
+                        <% }); %>
+                    </div>
+                </div>
+
+                <!-- Always Included Banner -->
+                <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl p-6 flex flex-col md:flex-row items-center justify-center gap-8 text-sm border border-gray-100 shadow-sm mt-8">
+                    <span class="font-semibold text-gray-800 uppercase tracking-wider text-xs">Always Included Across All Tiers:</span>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <% pricingPlans.alwaysIncluded.forEach(item => { %>
+                        <div class="flex items-center gap-2 text-gray-600"><i data-lucide="<%= item.icon %>" class="w-4 h-4 text-metallic"></i> <%= item.text %></div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Final Pre-Footer CTA -->
+        <section class="py-32 text-center fade-up relative overflow-hidden bg-cover bg-center bg-no-repeat"
+            style="background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/prefooter.png'); padding-bottom:20rem !important; padding-top:3rem !important">
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-metallic-light/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+            <div class="container mx-auto px-6 md:px-8 max-w-3xl relative z-10">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-8">Ready to get started?</h2>
+                <p class="text-xl text-gray-600 font-light mb-10">Join thousands of brands and individuals across India who trust our unified platform, dedicated RMs, and vetted partners for capturing life's best moments.</p>
+                <a href="https://wa.me/<%= site.whatsappNumber %>" target="_blank"><button class="bg-metallic hover:bg-metallic-hover text-white font-medium text-lg py-4 px-10 rounded-sm transition-all shadow-lg shadow-metallic/30 transform hover:-translate-y-1">Book Your Shoot Now</button></a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer.ejs') %>
+
+    <!-- jQuery and Slick Carousel JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <%- include('partials/scripts-common.ejs') %>
+
+    <script>
+        // Custom Creative Dropdown Logic
+        const dropdownBtn = document.getElementById('service-dropdown-btn');
+        const dropdownMenu = document.getElementById('service-dropdown-menu');
+        const selectedText = document.getElementById('service-selected-text');
+        const serviceOptions = document.querySelectorAll('.service-option');
+        const chevron = document.getElementById('service-chevron');
+        const hiddenServiceInput = document.getElementById('hidden-service');
+
+        dropdownBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('hidden');
+            chevron.classList.toggle('rotate-180');
+            setTimeout(() => { dropdownMenu.classList.toggle('opacity-0'); }, 10);
+            dropdownBtn.classList.toggle('ring-2');
+            dropdownBtn.classList.toggle('ring-metallic/50');
+        });
+
+        serviceOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const value = option.getAttribute('data-value');
+                selectedText.textContent = value;
+                selectedText.classList.add('text-gray-900', 'font-bold');
+                if (hiddenServiceInput) { hiddenServiceInput.value = value; }
+                dropdownMenu.classList.add('opacity-0');
+                chevron.classList.remove('rotate-180');
+                setTimeout(() => { dropdownMenu.classList.add('hidden'); }, 200);
+                dropdownBtn.classList.remove('ring-2', 'ring-metallic/50');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                if (!dropdownMenu.classList.contains('hidden')) {
+                    dropdownMenu.classList.add('opacity-0');
+                    chevron.classList.remove('rotate-180');
+                    setTimeout(() => { dropdownMenu.classList.add('hidden'); }, 200);
+                    dropdownBtn.classList.remove('ring-2', 'ring-metallic/50');
+                }
+            }
+        });
+
+        // Booking Form Submission -> POST to /api/book + WhatsApp redirect
+        const bookingForm = document.getElementById('booking-form');
+        const bookingStatus = document.getElementById('booking-status');
+        bookingForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const service = document.getElementById('hidden-service').value;
+            const location = document.getElementById('form-location').value;
+            const date = document.getElementById('form-date').value;
+
+            if (!service || service === 'Not Selected' || !location || !date) {
+                bookingStatus.classList.remove('hidden');
+                bookingStatus.classList.add('bg-red-50', 'text-red-700');
+                bookingStatus.textContent = 'Please select a service, enter a location, and choose a date.';
+                return;
+            }
+
+            // Send to backend
+            try {
+                const res = await fetch('/api/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ service, location, date })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    bookingStatus.classList.remove('hidden', 'bg-red-50', 'text-red-700');
+                    bookingStatus.classList.add('bg-green-50', 'text-green-700');
+                    bookingStatus.textContent = result.message;
+                } else {
+                    throw new Error(result.message);
+                }
+            } catch (err) {
+                bookingStatus.classList.remove('hidden');
+                bookingStatus.classList.add('bg-red-50', 'text-red-700');
+                bookingStatus.textContent = err.message || 'Something went wrong. Please try again.';
+            }
+
+            // Still redirect to WhatsApp for direct human follow-up
+            const customMessage = `Hi Dot Direction! I'm looking to book a shoot.\n\n*Service Needed:* ${service}\n*Location:* ${location}\n*Date:* ${date}\n\nPlease let me know the availability!`;
+            const encodedMessage = encodeURIComponent(customMessage);
+            window.open(`https://wa.me/<%= site.whatsappNumber %>?text=${encodedMessage}`, '_blank');
+        });
+
+        // Tabs Logic for Services Section
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => { b.classList.remove('text-white', 'bg-metallic', 'shadow-md'); b.classList.add('text-gray-600'); });
+                btn.classList.add('text-white', 'bg-metallic', 'shadow-md');
+                btn.classList.remove('text-gray-600');
+                const targetId = btn.getAttribute('data-target');
+                tabContents.forEach(content => {
+                    if (content.id === targetId) {
+                        content.classList.remove('hidden');
+                        content.classList.add('grid');
+                        setTimeout(() => { content.classList.remove('opacity-0', 'translate-y-4'); content.classList.add('opacity-100', 'translate-y-0'); }, 50);
+                    } else {
+                        content.classList.add('hidden', 'opacity-0', 'translate-y-4');
+                        content.classList.remove('grid', 'opacity-100', 'translate-y-0');
+                    }
+                });
+            });
+        });
+
+        // Interactive Process Engine (How it works section)
+        const processTabs = document.querySelectorAll('.process-tab');
+        const processContents = document.querySelectorAll('.process-content');
+        processTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('data-target');
+                processTabs.forEach(t => {
+                    t.classList.remove('bg-slate-850', 'shadow-xl', 'scale-105', 'border-transparent');
+                    t.classList.add('bg-white', 'hover:bg-gray-100', 'shadow-sm', 'hover:shadow', 'border-gray-200');
+                    const stepNum = t.querySelector('.step-num');
+                    stepNum.classList.remove('bg-white/20', 'text-white');
+                    stepNum.classList.add('bg-gray-100', 'text-gray-500');
+                    const subtitle = t.querySelector('.tab-subtitle');
+                    subtitle.classList.remove('text-gray-300');
+                    subtitle.classList.add('text-gray-400');
+                    const title = t.querySelector('.tab-title');
+                    title.classList.remove('text-white');
+                    title.classList.add('text-gray-800');
+                });
+                processContents.forEach(c => {
+                    c.classList.add('opacity-0', 'translate-y-4');
+                    setTimeout(() => { c.classList.add('hidden'); c.classList.remove('block'); }, 300);
+                });
+                tab.classList.add('bg-slate-850', 'shadow-xl', 'scale-105', 'border-transparent');
+                tab.classList.remove('bg-white', 'hover:bg-gray-100', 'shadow-sm', 'hover:shadow', 'border-gray-200');
+                const stepNum = tab.querySelector('.step-num');
+                stepNum.classList.add('bg-white/20', 'text-white');
+                stepNum.classList.remove('bg-gray-100', 'text-gray-500');
+                const subtitle = tab.querySelector('.tab-subtitle');
+                subtitle.classList.add('text-gray-300');
+                subtitle.classList.remove('text-gray-400');
+                const title = tab.querySelector('.tab-title');
+                title.classList.add('text-white');
+                title.classList.remove('text-gray-800');
+                setTimeout(() => {
+                    const target = document.getElementById(targetId);
+                    target.classList.remove('hidden');
+                    target.classList.add('block');
+                    setTimeout(() => { target.classList.remove('opacity-0', 'translate-y-4'); target.classList.add('opacity-100', 'translate-y-0'); }, 50);
+                }, 300);
+            });
+        });
+
+        // Initialize Slick Sliders
+        $(document).ready(function () {
+            $('.hero-slider').slick({ dots: false, infinite: true, speed: 1000, fade: true, cssEase: 'linear', autoplay: true, autoplaySpeed: 3000, arrows: false, pauseOnHover: false });
+            $('.fullscreen-slider').slick({ dots: true, infinite: true, speed: 1000, fade: true, cssEase: 'linear', autoplay: true, autoplaySpeed: 4000, arrows: false, pauseOnHover: false, adaptiveHeight: true });
+            $('.testimonial-slider').slick({
+                dots: true, infinite: true, speed: 500, slidesToShow: 3, slidesToScroll: 1, arrows: true, autoplay: true, autoplaySpeed: 4000,
+                responsive: [
+                    { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+                    { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1, arrows: false } }
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mount = document.getElementById('ethereal-gallery-mount');
+            const imageUrls = <%- JSON.stringify(galleryImages) %>;
+            const masonryHeights = ['h-64', 'h-80', 'h-96', 'h-[22rem]', 'h-[28rem]', 'h-[32rem]'];
+            let currentColumns = 0;
+
+            function getRequiredColumns() {
+                const w = window.innerWidth;
+                if (w < 640) return 2;
+                if (w < 768) return 3;
+                if (w < 1024) return 4;
+                if (w < 1280) return 5;
+                if (w < 1536) return 6;
+                return 7;
+            }
+
+            function buildEtherealGallery() {
+                const required = getRequiredColumns();
+                if (required === currentColumns) return;
+                currentColumns = required;
+                mount.innerHTML = '';
+                let imgIdx = 0;
+                for (let i = 0; i < required; i++) {
+                    const col = document.createElement('div');
+                    col.className = 'flex-1 flex flex-col gap-3 sm:gap-4 md:gap-6 min-w-[120px] sm:min-w-[150px]';
+                    const direction = i % 2 === 0 ? 'animate-ethereal-up' : 'animate-ethereal-down';
+                    const track = document.createElement('div');
+                    track.className = `flex flex-col gap-3 sm:gap-4 md:gap-6 w-full ${direction} group-hover/gallery-master:[animation-play-state:paused]`;
+                    let itemsHTML = '';
+                    for (let j = 0; j < 6; j++) {
+                        const h = masonryHeights[Math.floor(Math.random() * masonryHeights.length)];
+                        const url = imageUrls[imgIdx % imageUrls.length];
+                        imgIdx++;
+                        itemsHTML += `<div class="relative w-full ${h} rounded-2xl overflow-hidden cursor-pointer group/ethereal-item shadow-2xl transform transition-all duration-500 hover:scale-[1.02] hover:z-30 bg-zinc-900">
+                            <img src="${url}" alt="Gallery" class="w-full h-full object-cover filter brightness-75 group-hover/ethereal-item:brightness-110 transition-all duration-700" loading="lazy" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/ethereal-item:opacity-100 transition-opacity duration-500"></div>
+                        </div>`;
+                    }
+                    track.innerHTML = itemsHTML + itemsHTML;
+                    col.appendChild(track);
+                    mount.appendChild(col);
+                }
+            }
+
+            buildEtherealGallery();
+            let debounceTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(buildEtherealGallery, 250);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
