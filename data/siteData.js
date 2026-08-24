@@ -33,7 +33,7 @@ module.exports = {
   socials: [
     { name: 'WhatsApp', href: 'https://wa.me/+916398962566', hoverClass: 'hover:text-[#25D366]', title: 'WhatsApp', icon: 'whatsapp' },
     { name: 'Facebook', href: 'https://www.facebook.com/DotDirection.photography', hoverClass: 'hover:text-[#1877F2]', title: 'Facebook', icon: 'facebook' },
-    { name: 'Instagram', href: 'https://www.instagram.com/dot_direction/', hoverClass: 'hover:text-[#E4405F]', title: 'Instagram', icon: 'instagram' },
+    { name: 'Instagram', href: 'https://www.instagram.com/dot_directions/', hoverClass: 'hover:text-[#E4405F]', title: 'Instagram', icon: 'instagram' },
     { name: 'Gmail', href: 'mailto:dotdirection.in@gmail.com', hoverClass: 'hover:text-[#EA4335]', title: 'Email Us', icon: 'gmail' }
   ],
 
