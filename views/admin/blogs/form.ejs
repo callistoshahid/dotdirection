@@ -25,7 +25,7 @@
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Content *</label>
                     <textarea id="blog-content-editor" name="content" rows="14" required placeholder="Write the blog content here..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50"><%- blog ? blog.content : '' %></textarea>
-                    <p class="text-xs text-gray-400 mt-2">Use the editor toolbar for headings, bold, lists, quotes and links. Content is saved as HTML.</p>
+                    <p class="text-xs text-gray-400 mt-2">Use the editor toolbar for headings, bold, lists, quotes, links, tables and image upload. Content is saved as HTML and uploaded images are stored on this server.</p>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Status</label>
@@ -52,13 +52,50 @@
         }
     </style>
     <script>
+        class DotImageUploadAdapter {
+            constructor(loader) {
+                this.loader = loader;
+            }
+
+            upload() {
+                return this.loader.file.then(file => new Promise((resolve, reject) => {
+                    const data = new FormData();
+                    data.append('upload', file);
+
+                    fetch('/admin/blogs/upload-image', {
+                        method: 'POST',
+                        body: data
+                    })
+                        .then(response => response.json())
+                        .then(result => {
+                            if (result.error) {
+                                reject(result.error.message || 'Image upload failed.');
+                                return;
+                            }
+                            resolve({ default: result.url });
+                        })
+                        .catch(() => reject('Image upload failed.'));
+                }));
+            }
+
+            abort() {}
+        }
+
+        function DotUploadAdapterPlugin(editor) {
+            editor.plugins.get('FileRepository').createUploadAdapter = loader => new DotImageUploadAdapter(loader);
+        }
+
         ClassicEditor
             .create(document.querySelector('#blog-content-editor'), {
+                extraPlugins: [DotUploadAdapterPlugin],
                 toolbar: [
                     'heading', '|',
                     'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
-                    'blockQuote', 'insertTable', 'undo', 'redo'
-                ]
+                    'blockQuote', 'insertTable', 'imageUpload', 'undo', 'redo'
+                ],
+                image: {
+                    toolbar: ['imageTextAlternative', 'imageStyle:inline', 'imageStyle:block', 'imageStyle:side']
+                }
             })
             .catch(error => {
                 console.error('CKEditor failed to load:', error);

@@ -144,6 +144,9 @@ db.serialize(() => {
 const uploadDir = path.join(__dirname, 'public', 'uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
+const blogUploadDir = path.join(uploadDir, 'blogs');
+if (!fs.existsSync(blogUploadDir)) fs.mkdirSync(blogUploadDir, { recursive: true });
+
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => cb(null, uploadDir),
@@ -158,6 +161,24 @@ const upload = multer({
     const ext = path.extname(file.originalname).toLowerCase();
     if (allowed.includes(ext)) cb(null, true);
     else cb(new Error('Only PDF, JPG, JPEG, and PNG files are allowed.'));
+  }
+});
+
+const blogImageUpload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => cb(null, blogUploadDir),
+    filename: (req, file, cb) => {
+      const safeBase = path.basename(file.originalname, path.extname(file.originalname)).replace(/[^a-z0-9-]/gi, '-').toLowerCase();
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+      cb(null, `${safeBase || 'blog-image'}-${uniqueSuffix}${path.extname(file.originalname).toLowerCase()}`);
+    }
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const allowed = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (allowed.includes(ext)) cb(null, true);
+    else cb(new Error('Only JPG, JPEG, PNG, WEBP and GIF images are allowed.'));
   }
 });
 
@@ -331,6 +352,16 @@ app.post('/admin/leads/:id/delete', requireAdmin, async (req, res, next) => {
 // ============================================================
 // Admin blog CRUD
 // ============================================================
+app.post('/admin/blogs/upload-image', requireAdmin, blogImageUpload.single('upload'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: { message: 'No image uploaded.' } });
+  }
+
+  return res.json({
+    url: `/uploads/blogs/${req.file.filename}`
+  });
+});
+
 app.get('/admin/blogs', requireAdmin, async (req, res, next) => {
   try {
     const blogs = await all('SELECT * FROM blogs ORDER BY updatedAt DESC');

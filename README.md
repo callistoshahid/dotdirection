@@ -67,6 +67,7 @@ Admin features:
 - View photographer applications and uploaded Gov ID files
 - Create/edit/delete blogs
 - Save blogs as Draft or Published
+- Upload blog content images through CKEditor (stored in `public/uploads/blogs/`)
 
 ## Making the Site Dynamic
 
@@ -112,6 +113,16 @@ All submissions are stored in **SQLite** at `data/dotdirection.sqlite` (auto-cre
 - Admin blog manager: `/admin/blogs`
 
 Only blogs marked **Published** appear publicly. Drafts remain visible only in admin.
+
+### Blog Images
+
+The admin blog editor uses CKEditor and supports direct image uploads inside blog content. Uploaded images are saved to:
+
+```text
+public/uploads/blogs/
+```
+
+This folder is gitignored because uploaded files are runtime content. On Hostinger, make sure `public/uploads/` is writable and included in backups.
 
 ## Deploying to Hostinger (Node.js VPS/Cloud Plan)
 
