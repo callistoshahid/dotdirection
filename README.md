@@ -6,7 +6,7 @@ A dynamic conversion of the static Dot Direction photography website into a Node
 
 - **Node.js** + **Express** — server & routing
 - **EJS** — server-side templating
-- **SQLite via sql.js (WebAssembly)** — persistent storage for leads, bookings, applications and blogs without native GLIBC issues
+- **Hostinger MySQL** — persistent storage for leads, bookings, applications and blogs
 - **express-session** — admin authentication session
 - **Multer** — file uploads (photographer's Government ID)
 - **Tailwind CSS (CDN)** — styling
@@ -20,7 +20,6 @@ dot-direction-website/
 ├── package.json           # Dependencies & scripts
 ├── data/
 │   ├── siteData.js        # Centralized dynamic content (edit here to update site)
-│   └── dotdirection.sqlite # Runtime SQLite DB (auto-created, gitignored)
 ├── views/
 │   ├── index.ejs          # Homepage template
 │   ├── join-as-photographer.ejs  # Talent application form
@@ -104,9 +103,17 @@ All content has been extracted from the static HTML into **`data/siteData.js`**.
 - **Booking form** (homepage) → `POST /api/book` — stores booking + opens WhatsApp redirect.
 - **Photographer application** → `POST /api/apply` — multipart form with Gov ID upload via Multer.
 
-All submissions are stored in **SQLite** at `data/dotdirection.sqlite` (auto-created on first run). This file is gitignored so live data is not overwritten during deployments.
+All submissions are stored in **Hostinger MySQL**. Tables are auto-created on first app startup.
 
-This project uses `sql.js` instead of the native `sqlite3` package so it works on Hostinger environments with older GLIBC versions.
+Set these environment variables in Hostinger before starting the app:
+
+```bash
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_DATABASE=u430066163_dotdirection
+MYSQL_USER=u430066163_dotdirection
+MYSQL_PASSWORD=your_database_password
+```
 
 ## Blogs
 
@@ -156,7 +163,7 @@ This folder is gitignored because uploaded files are runtime content. On Hosting
 
 EJS is fully supported on Hostinger Node.js hosting — it's a standard npm package.
 
-1. Upload all files (excluding `node_modules`, `public/uploads`, and `data/*.sqlite`) to your VPS.
+1. Upload all files (excluding `node_modules` and `public/uploads`) to your VPS.
 2. On the server:
    ```bash
    npm install --production

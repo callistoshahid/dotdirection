@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const multer = require('multer');
-const initSqlJs = require('sql.js');
+const mysql = require('mysql2/promise');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +11,11 @@ const SITE_URL = (process.env.SITE_URL || 'https://dotdirections.com').replace(/
 const ADMIN_ID = process.env.ADMIN_ID || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'dot-direction-change-this-secret';
+const MYSQL_HOST = process.env.MYSQL_HOST || 'localhost';
+const MYSQL_PORT = Number(process.env.MYSQL_PORT || 3306);
+const MYSQL_DATABASE = process.env.MYSQL_DATABASE || 'u430066163_dotdirection';
+const MYSQL_USER = process.env.MYSQL_USER || 'u430066163_dotdirection';
+const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD || '';
 
 // ============================================================
 // Dynamic Data Layer
@@ -43,35 +48,22 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ============================================================
-// SQLite database
+// Hostinger MySQL database
 // ============================================================
-const DATA_DIR = path.join(__dirname, 'data');
-const DB_FILE = path.join(DATA_DIR, 'dotdirection.sqlite');
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-
-let db;
-
-const persistDb = () => {
-  if (!db) return;
-  const data = db.export();
-  fs.writeFileSync(DB_FILE, Buffer.from(data));
-};
-
-const normalizeParams = (params = []) => params.map(value => (value === undefined ? null : value));
-
-const rowToObject = (columns, row) => columns.reduce((acc, column, index) => {
-  acc[column] = row[index];
-  return acc;
-}, {});
+const pool = mysql.createPool({
+  host: MYSQL_HOST,
+  port: MYSQL_PORT,
+  user: MYSQL_USER,
+  password: MYSQL_PASSWORD,
+  database: MYSQL_DATABASE,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  charset: 'utf8mb4'
+});
 
 const all = async (sql, params = []) => {
-  const statement = db.prepare(sql);
-  statement.bind(normalizeParams(params));
-  const rows = [];
-  while (statement.step()) {
-    rows.push(rowToObject(statement.getColumnNames(), statement.get()));
-  }
-  statement.free();
+  const [rows] = await pool.execute(sql, params);
   return rows;
 };
 
@@ -81,90 +73,75 @@ const get = async (sql, params = []) => {
 };
 
 const run = async (sql, params = []) => {
-  db.run(sql, normalizeParams(params));
-  const idRow = db.exec('SELECT last_insert_rowid() AS id');
-  const changesRow = db.exec('SELECT changes() AS changes');
-  persistDb();
-  return {
-    id: idRow[0] ? idRow[0].values[0][0] : undefined,
-    changes: changesRow[0] ? changesRow[0].values[0][0] : 0
-  };
+  const [result] = await pool.execute(sql, params);
+  return { id: result.insertId, changes: result.affectedRows };
 };
 
 const initDb = async () => {
-  const SQL = await initSqlJs();
-  if (fs.existsSync(DB_FILE)) {
-    db = new SQL.Database(fs.readFileSync(DB_FILE));
-    console.log(`[DB] sql.js SQLite loaded: ${DB_FILE}`);
-  } else {
-    db = new SQL.Database();
-    console.log(`[DB] sql.js SQLite created: ${DB_FILE}`);
-  }
+  await pool.execute(`CREATE TABLE IF NOT EXISTS leads (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(100) NOT NULL,
+    source VARCHAR(100) DEFAULT 'popup',
+    status VARCHAR(50) DEFAULT 'new',
+    createdAt VARCHAR(50) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS leads (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    phone TEXT NOT NULL,
-    source TEXT DEFAULT 'popup',
-    status TEXT DEFAULT 'new',
-    createdAt TEXT NOT NULL
-  )`);
+  await pool.execute(`CREATE TABLE IF NOT EXISTS bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    service VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    date VARCHAR(100) NOT NULL,
+    status VARCHAR(50) DEFAULT 'new',
+    createdAt VARCHAR(50) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS bookings (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    service TEXT NOT NULL,
-    location TEXT NOT NULL,
-    date TEXT NOT NULL,
-    status TEXT DEFAULT 'new',
-    createdAt TEXT NOT NULL
-  )`);
-
-  db.run(`CREATE TABLE IF NOT EXISTS applications (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    legalName TEXT NOT NULL,
-    studioName TEXT,
-    email TEXT NOT NULL,
-    phone TEXT NOT NULL,
-    city TEXT NOT NULL,
-    experience TEXT,
+  await pool.execute(`CREATE TABLE IF NOT EXISTS applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    legalName VARCHAR(255) NOT NULL,
+    studioName VARCHAR(255),
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(100) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    experience VARCHAR(100),
     categories TEXT,
     cameraBodies TEXT,
     lenses TEXT,
-    videoDrone TEXT,
+    videoDrone VARCHAR(50),
     portfolioUrl TEXT,
     socialUrl TEXT,
     driveUrl TEXT,
     styleDesc TEXT,
-    baseRate TEXT,
-    travelTerms TEXT,
-    editingTerms TEXT,
-    commission TEXT,
-    ackTraining INTEGER DEFAULT 0,
-    ackCalendar INTEGER DEFAULT 0,
-    ackPayment INTEGER DEFAULT 0,
-    ackPerformance INTEGER DEFAULT 0,
+    baseRate VARCHAR(100),
+    travelTerms VARCHAR(255),
+    editingTerms VARCHAR(255),
+    commission VARCHAR(100),
+    ackTraining TINYINT DEFAULT 0,
+    ackCalendar TINYINT DEFAULT 0,
+    ackPayment TINYINT DEFAULT 0,
+    ackPerformance TINYINT DEFAULT 0,
     govIdFile TEXT,
-    status TEXT DEFAULT 'pending_review',
-    createdAt TEXT NOT NULL
-  )`);
+    status VARCHAR(100) DEFAULT 'pending_review',
+    createdAt VARCHAR(50) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS blogs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    slug TEXT NOT NULL UNIQUE,
+  await pool.execute(`CREATE TABLE IF NOT EXISTS blogs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL UNIQUE,
     excerpt TEXT,
-    content TEXT NOT NULL,
+    content LONGTEXT NOT NULL,
     coverImage TEXT,
-    status TEXT DEFAULT 'draft',
-    createdAt TEXT NOT NULL,
-    updatedAt TEXT NOT NULL
-  )`);
+    status VARCHAR(50) DEFAULT 'draft',
+    createdAt VARCHAR(50) NOT NULL,
+    updatedAt VARCHAR(50) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`);
 
-  persistDb();
+  console.log(`[DB] MySQL connected: ${MYSQL_USER}@${MYSQL_HOST}/${MYSQL_DATABASE}`);
 };
 
 const dbReady = initDb().catch(err => {
-  console.error('[DB] sql.js initialization failed:', err.message);
+  console.error('[DB] MySQL initialization failed:', err.message);
   process.exit(1);
 });
 
