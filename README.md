@@ -114,6 +114,19 @@ All submissions are stored in **SQLite** at `data/dotdirection.sqlite` (auto-cre
 
 Only blogs marked **Published** appear publicly. Drafts remain visible only in admin.
 
+## SEO Location Pages
+
+The footer location links point to SEO-focused city landing pages:
+
+- `/locations/photographers-in-mumbai`
+- `/locations/photographers-in-delhi-ncr`
+- `/locations/photographers-in-bangalore`
+- `/locations/photographers-in-pune`
+- `/locations/photographers-in-chennai`
+- `/locations/videographers-in-hyderabad`
+
+Location content is managed in `data/siteData.js` under the `locations` array. Each page includes local service copy, covered areas, FAQs and LocalBusiness schema markup.
+
 ### Blog Images
 
 The admin blog editor uses CKEditor and supports direct image uploads inside blog content. Uploaded images are saved to:

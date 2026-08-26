@@ -1,0 +1,113 @@
+<%- include('../partials/head.ejs') %>
+
+<body class="font-sans text-[#333333] bg-white selection:bg-metallic-light selection:text-white overflow-x-hidden">
+    <%- include('../partials/navbar.ejs') %>
+
+    <main>
+        <section class="pt-32 md:pt-40 pb-16 bg-[#F8F9FA] relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-metallic-light/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+            <div class="container mx-auto px-6 md:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 text-xs font-bold tracking-widest uppercase text-metallic shadow-sm mb-6">
+                            Available in <%= location.city %>
+                        </span>
+                        <h1 class="font-serif text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6"><%= location.title %></h1>
+                        <p class="text-lg md:text-xl text-gray-600 font-light leading-relaxed mb-8"><%= location.intro %></p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="https://wa.me/<%= site.whatsappNumber %>?text=<%= encodeURIComponent('Hi Dot Direction! I need ' + location.serviceLabel + '.') %>" target="_blank" class="bg-metallic hover:bg-metallic-hover text-white px-7 py-4 rounded-lg font-bold shadow-lg text-center transition-all">Book in <%= location.city %></a>
+                            <a href="tel:<%= site.callNowPhone %>" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-7 py-4 rounded-lg font-bold text-center transition-all">Call Now</a>
+                        </div>
+                    </div>
+                    <div class="rounded-3xl overflow-hidden shadow-2xl bg-gray-100 aspect-[4/3]">
+                        <img src="<%= location.heroImage %>" alt="<%= location.serviceLabel %>" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 md:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-6">Why choose Dot Directions in <%= location.city %>?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+                            <% location.highlights.forEach(point => { %>
+                                <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex gap-4">
+                                    <i data-lucide="check-circle" class="w-6 h-6 text-metallic shrink-0"></i>
+                                    <p class="text-gray-700 leading-relaxed"><%= point %></p>
+                                </div>
+                            <% }); %>
+                        </div>
+                        <div class="bg-slate-850 rounded-3xl p-8 md:p-10 text-white">
+                            <h3 class="font-serif text-2xl md:text-3xl font-bold mb-4">Photography and videography services we cover</h3>
+                            <p class="text-gray-300 font-light leading-relaxed mb-6">Our vetted network supports weddings, pre-weddings, corporate events, product shoots, food photography, real estate, creator content, portraits, parties, maternity sessions and video production. Every booking is coordinated with clear communication and quality review.</p>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm">
+                                <span class="bg-white/10 rounded-lg px-3 py-2">Weddings</span>
+                                <span class="bg-white/10 rounded-lg px-3 py-2">Corporate Events</span>
+                                <span class="bg-white/10 rounded-lg px-3 py-2">Product Shoots</span>
+                                <span class="bg-white/10 rounded-lg px-3 py-2">Portraits</span>
+                                <span class="bg-white/10 rounded-lg px-3 py-2">Parties</span>
+                                <span class="bg-white/10 rounded-lg px-3 py-2">Videography</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="bg-[#F8F9FA] border border-gray-100 rounded-3xl p-8 h-fit sticky top-32">
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mb-4">Areas we cover</h3>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <% location.areas.forEach(area => { %>
+                                <span class="bg-white border border-gray-200 rounded-full px-3 py-1.5 text-sm text-gray-600"><%= area %></span>
+                            <% }); %>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-3">Need availability?</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-5">Share your event details and our team will help you find the right professional in <%= location.city %>.</p>
+                        <a href="/#booking-form" class="block w-full bg-metallic hover:bg-metallic-hover text-white text-center py-3 rounded-lg font-bold">Check Availability</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-[#F8F9FA]">
+            <div class="container mx-auto px-6 md:px-8 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-4">Frequently asked questions</h2>
+                    <p class="text-gray-600 font-light">Common questions about hiring <%= location.serviceLabel.toLowerCase() %>.</p>
+                </div>
+                <div class="space-y-4">
+                    <% location.faqs.forEach(faq => { %>
+                        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+                            <h3 class="font-bold text-gray-900 mb-2"><%= faq.question %></h3>
+                            <p class="text-gray-600 leading-relaxed"><%= faq.answer %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white text-center">
+            <div class="container mx-auto px-6 md:px-8 max-w-3xl">
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-6">Ready to hire <%= location.serviceLabel.toLowerCase() %>?</h2>
+                <p class="text-lg text-gray-600 font-light mb-8">Tell us your event type, location and preferred date. We will help you match with a vetted professional in <%= location.city %>.</p>
+                <a href="https://wa.me/<%= site.whatsappNumber %>?text=<%= encodeURIComponent('Hi Dot Direction! I need ' + location.serviceLabel + '.') %>" target="_blank" class="inline-flex bg-metallic hover:bg-metallic-hover text-white px-8 py-4 rounded-lg font-bold shadow-lg">Start on WhatsApp</a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/scripts-common.ejs') %>
+
+    <script type="application/ld+json">
+        <%- JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: `Dot Directions - ${location.serviceLabel}`,
+            description: location.metaDescription,
+            areaServed: location.city,
+            telephone: site.callNowPhone,
+            url: `https://dotdirections.com/locations/${location.slug}`,
+            image: location.heroImage
+        }) %>
+    </script>
+</body>
+</html>

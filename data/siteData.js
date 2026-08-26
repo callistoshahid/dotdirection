@@ -356,12 +356,12 @@ module.exports = {
       { label: 'Terms of Service', href: '#' }
     ],
     locations: [
-      { label: 'Photographers in Mumbai', href: '#' },
-      { label: 'Photographers in Delhi NCR', href: '#' },
-      { label: 'Photographers in Bangalore', href: '#' },
-      { label: 'Photographers in Pune', href: '#' },
-      { label: 'Photographers in Chennai', href: '#' },
-      { label: 'Videographers in Hyderabad', href: '#' }
+      { label: 'Photographers in Mumbai', href: '/locations/photographers-in-mumbai' },
+      { label: 'Photographers in Delhi NCR', href: '/locations/photographers-in-delhi-ncr' },
+      { label: 'Photographers in Bangalore', href: '/locations/photographers-in-bangalore' },
+      { label: 'Photographers in Pune', href: '/locations/photographers-in-pune' },
+      { label: 'Photographers in Chennai', href: '/locations/photographers-in-chennai' },
+      { label: 'Videographers in Hyderabad', href: '/locations/videographers-in-hyderabad' }
     ],
     occasions: [
       { label: 'Wedding Photography', href: '#' },
@@ -388,6 +388,106 @@ module.exports = {
       { label: 'Tips for Natural Lighting', href: '#' }
     ]
   },
+
+  // SEO-focused location landing pages
+  locations: [
+    {
+      slug: 'photographers-in-mumbai',
+      city: 'Mumbai',
+      serviceLabel: 'Photographers in Mumbai',
+      title: 'Professional Photographers in Mumbai',
+      metaTitle: 'Professional Photographers in Mumbai | Dot Directions',
+      metaDescription: 'Hire vetted photographers in Mumbai for weddings, pre-weddings, corporate events, product shoots, parties and brand campaigns.',
+      heroImage: '/image%20(28).jpg',
+      intro: 'Mumbai moves fast, and your photography team needs to move with it. Dot Directions connects you with vetted photographers in Mumbai for premium wedding stories, brand launches, corporate events, product shoots, portraits and private celebrations.',
+      highlights: ['Wedding and pre-wedding photography across Mumbai and nearby destinations', 'Corporate event, PR launch and brand activation coverage', 'Product, fashion, food and lifestyle photography for growing businesses', 'Relationship manager support for coordination, timelines and delivery'],
+      areas: ['Bandra', 'Andheri', 'Juhu', 'Lower Parel', 'Powai', 'Thane', 'Navi Mumbai', 'South Mumbai'],
+      faqs: [
+        { question: 'Can I book a photographer in Mumbai for the same week?', answer: 'Yes, availability depends on the event date and service type. Submit your details and our team will check matching professionals quickly.' },
+        { question: 'Do you cover both personal and business shoots in Mumbai?', answer: 'Yes, we handle weddings, parties, portraits, corporate events, commercial campaigns and product shoots.' }
+      ]
+    },
+    {
+      slug: 'photographers-in-delhi-ncr',
+      city: 'Delhi NCR',
+      serviceLabel: 'Photographers in Delhi NCR',
+      title: 'Professional Photographers in Delhi NCR',
+      metaTitle: 'Professional Photographers in Delhi NCR | Dot Directions',
+      metaDescription: 'Book trusted photographers in Delhi NCR for weddings, corporate events, portraits, products, parties and videography projects.',
+      heroImage: '/image%20(8).jpg',
+      intro: 'From intimate family functions in Delhi to large corporate events in Gurgaon and Noida, Dot Directions helps you hire reliable photographers in Delhi NCR with consistent quality and smooth coordination.',
+      highlights: ['Wedding, engagement and family event coverage', 'Corporate conferences, exhibitions and launch events', 'Portraits, headshots and creator shoots', 'Edited high-resolution delivery with quality review'],
+      areas: ['Delhi', 'Gurgaon', 'Noida', 'Faridabad', 'Ghaziabad', 'Dwarka', 'Saket', 'Aerocity'],
+      faqs: [
+        { question: 'Do you cover Gurgaon and Noida?', answer: 'Yes, Delhi NCR coverage includes Delhi, Gurgaon, Noida, Ghaziabad, Faridabad and nearby locations.' },
+        { question: 'Can you provide photographers for corporate events?', answer: 'Yes, our network includes professionals experienced in corporate events, conferences, PR launches and headshots.' }
+      ]
+    },
+    {
+      slug: 'photographers-in-bangalore',
+      city: 'Bangalore',
+      serviceLabel: 'Photographers in Bangalore',
+      title: 'Professional Photographers in Bangalore',
+      metaTitle: 'Professional Photographers in Bangalore | Dot Directions',
+      metaDescription: 'Hire professional photographers in Bangalore for weddings, startup events, corporate headshots, product shoots and private parties.',
+      heroImage: '/Maternity.jpeg',
+      intro: 'Dot Directions provides trusted photographers in Bangalore for personal milestones, startup events, corporate shoots, commercial content and lifestyle campaigns, all backed by clear coordination and quality checks.',
+      highlights: ['Startup and corporate photography support', 'Maternity, newborn and family portraits', 'Product, food and lifestyle content for brands', 'Dedicated relationship manager for booking support'],
+      areas: ['Indiranagar', 'Koramangala', 'Whitefield', 'HSR Layout', 'MG Road', 'Jayanagar', 'Electronic City', 'Hebbal'],
+      faqs: [
+        { question: 'Do you shoot startup and office events in Bangalore?', answer: 'Yes, we cover startup events, team photos, corporate headshots, conferences and brand content.' },
+        { question: 'Can I book maternity or newborn photography?', answer: 'Yes, Bangalore coverage includes maternity, newborn, family and lifestyle portrait sessions.' }
+      ]
+    },
+    {
+      slug: 'photographers-in-pune',
+      city: 'Pune',
+      serviceLabel: 'Photographers in Pune',
+      title: 'Professional Photographers in Pune',
+      metaTitle: 'Professional Photographers in Pune | Dot Directions',
+      metaDescription: 'Find vetted photographers in Pune for weddings, birthdays, corporate events, products, portraits and lifestyle shoots.',
+      heroImage: '/Couple.jpeg',
+      intro: 'Whether it is a pre-wedding shoot, private celebration, corporate gathering or product shoot, Dot Directions connects you with vetted photographers in Pune who understand both creative and commercial requirements.',
+      highlights: ['Couple, pre-wedding and wedding photography', 'Birthday parties and private celebrations', 'Corporate events and professional headshots', 'Product and commercial photography for local brands'],
+      areas: ['Koregaon Park', 'Baner', 'Hinjewadi', 'Viman Nagar', 'Kalyani Nagar', 'Wakad', 'Magarpatta', 'Hadapsar'],
+      faqs: [
+        { question: 'Do you cover shoots near Hinjewadi and Baner?', answer: 'Yes, we cover Pune city and key business/residential hubs including Hinjewadi, Baner, Wakad and Viman Nagar.' },
+        { question: 'Can I hire photographers for small functions?', answer: 'Yes, we support small functions, birthdays, roka ceremonies, house parties and intimate gatherings.' }
+      ]
+    },
+    {
+      slug: 'photographers-in-chennai',
+      city: 'Chennai',
+      serviceLabel: 'Photographers in Chennai',
+      title: 'Professional Photographers in Chennai',
+      metaTitle: 'Professional Photographers in Chennai | Dot Directions',
+      metaDescription: 'Book photographers in Chennai for weddings, family events, corporate photography, food, products and lifestyle campaigns.',
+      heroImage: '/Graduation.jpeg',
+      intro: 'Dot Directions helps you hire professional photographers in Chennai for traditional celebrations, contemporary brand shoots, corporate documentation and family milestones.',
+      highlights: ['Wedding, engagement and family ceremonies', 'Corporate and institutional event photography', 'Food, product and commercial content', 'Fast coordination with vetted local professionals'],
+      areas: ['T. Nagar', 'Anna Nagar', 'Adyar', 'OMR', 'ECR', 'Nungambakkam', 'Velachery', 'Guindy'],
+      faqs: [
+        { question: 'Do you cover traditional wedding events in Chennai?', answer: 'Yes, our teams cover traditional wedding rituals, receptions, engagements and family ceremonies.' },
+        { question: 'Do you provide commercial photography in Chennai?', answer: 'Yes, we handle food, product, real estate, lifestyle and corporate photography projects.' }
+      ]
+    },
+    {
+      slug: 'videographers-in-hyderabad',
+      city: 'Hyderabad',
+      serviceLabel: 'Videographers in Hyderabad',
+      title: 'Professional Videographers in Hyderabad',
+      metaTitle: 'Professional Videographers in Hyderabad | Dot Directions',
+      metaDescription: 'Hire videographers in Hyderabad for weddings, corporate films, event videos, reels, product videos and brand storytelling.',
+      heroImage: '/image%20(12).jpg',
+      intro: 'For cinematic wedding films, corporate highlights, brand videos and social media reels, Dot Directions connects you with skilled videographers in Hyderabad backed by smooth planning and dependable delivery.',
+      highlights: ['Wedding films and event highlight videos', 'Corporate videos, aftermovies and brand stories', 'Reels and short-form content for creators and businesses', 'Editing support and high-quality final delivery'],
+      areas: ['HITEC City', 'Gachibowli', 'Jubilee Hills', 'Banjara Hills', 'Kondapur', 'Madhapur', 'Secunderabad', 'Begumpet'],
+      faqs: [
+        { question: 'Can I hire videographers for corporate events in Hyderabad?', answer: 'Yes, we cover corporate aftermovies, event documentation, interviews and brand videos.' },
+        { question: 'Do you provide both photography and videography?', answer: 'Yes, depending on your requirement we can coordinate photography, videography and editing together.' }
+      ]
+    }
+  ],
 
   // Photographer application form options
   experienceOptions: ['0-2 Years', '3-5 Years', '6-10 Years', '10+ Years'],

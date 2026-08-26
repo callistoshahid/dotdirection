@@ -263,6 +263,16 @@ app.get('/blogs/:slug', async (req, res, next) => {
   }
 });
 
+app.get('/locations/:slug', (req, res) => {
+  const location = siteData.locations.find(item => item.slug === req.params.slug);
+  if (!location) return res.status(404).render('404', { title: 'Location Not Found | Dot Directions' });
+
+  res.render('locations/show', {
+    title: location.metaTitle,
+    location
+  });
+});
+
 // ============================================================
 // Admin auth + dashboard
 // ============================================================
