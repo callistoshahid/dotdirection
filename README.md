@@ -127,6 +127,19 @@ The footer location links point to SEO-focused city landing pages:
 
 Location content is managed in `data/siteData.js` under the `locations` array. Each page includes local service copy, covered areas, FAQs and LocalBusiness schema markup.
 
+## SEO Files
+
+The app serves:
+
+- `/robots.txt`
+- `/sitemap.xml`
+
+The sitemap includes the homepage, join page, blogs listing, all location pages and published blog posts. Set the production domain with:
+
+```bash
+SITE_URL=https://dotdirections.com npm start
+```
+
 ### Blog Images
 
 The admin blog editor uses CKEditor and supports direct image uploads inside blog content. Uploaded images are saved to:

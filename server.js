@@ -7,6 +7,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const SITE_URL = (process.env.SITE_URL || 'https://dotdirections.com').replace(/\/$/, '');
 const ADMIN_ID = process.env.ADMIN_ID || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'dot-direction-change-this-secret';
@@ -216,6 +217,21 @@ const countRows = async (table) => {
   return row ? row.count : 0;
 };
 
+const escapeXml = (value) => String(value)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&apos;');
+
+const buildSitemapUrl = ({ loc, lastmod, changefreq = 'weekly', priority = '0.7' }) => `
+  <url>
+    <loc>${escapeXml(`${SITE_URL}${loc}`)}</loc>
+    ${lastmod ? `<lastmod>${escapeXml(lastmod)}</lastmod>` : ''}
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+
 // ============================================================
 // Global locals (available in all templates)
 // ============================================================
@@ -232,6 +248,50 @@ app.use((req, res, next) => {
 // ============================================================
 // Public routes
 // ============================================================
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain').send(`User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: ${SITE_URL}/sitemap.xml
+`);
+});
+
+app.get('/sitemap.xml', async (req, res, next) => {
+  try {
+    const now = new Date().toISOString();
+    const publishedBlogs = await all('SELECT slug, updatedAt FROM blogs WHERE status = ? ORDER BY updatedAt DESC', ['published']);
+
+    const urls = [
+      { loc: '/', lastmod: now, changefreq: 'daily', priority: '1.0' },
+      { loc: '/join-as-photographer', lastmod: now, changefreq: 'monthly', priority: '0.7' },
+      { loc: '/blogs', lastmod: now, changefreq: 'weekly', priority: '0.8' },
+      ...siteData.locations.map(location => ({
+        loc: `/locations/${location.slug}`,
+        lastmod: now,
+        changefreq: 'weekly',
+        priority: '0.85'
+      })),
+      ...publishedBlogs.map(blog => ({
+        loc: `/blogs/${blog.slug}`,
+        lastmod: blog.updatedAt || now,
+        changefreq: 'monthly',
+        priority: '0.65'
+      }))
+    ];
+
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(buildSitemapUrl).join('\n')}
+</urlset>`;
+
+    res.type('application/xml').send(xml);
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.get('/', (req, res) => {
   res.render('index', { title: siteData.site.homeTitle });
 });
