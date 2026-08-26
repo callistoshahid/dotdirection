@@ -6,7 +6,7 @@ A dynamic conversion of the static Dot Direction photography website into a Node
 
 - **Node.js** + **Express** — server & routing
 - **EJS** — server-side templating
-- **SQLite** — persistent storage for leads, bookings, applications and blogs
+- **SQLite via sql.js (WebAssembly)** — persistent storage for leads, bookings, applications and blogs without native GLIBC issues
 - **express-session** — admin authentication session
 - **Multer** — file uploads (photographer's Government ID)
 - **Tailwind CSS (CDN)** — styling
@@ -105,6 +105,8 @@ All content has been extracted from the static HTML into **`data/siteData.js`**.
 - **Photographer application** → `POST /api/apply` — multipart form with Gov ID upload via Multer.
 
 All submissions are stored in **SQLite** at `data/dotdirection.sqlite` (auto-created on first run). This file is gitignored so live data is not overwritten during deployments.
+
+This project uses `sql.js` instead of the native `sqlite3` package so it works on Hostinger environments with older GLIBC versions.
 
 ## Blogs
 

@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const multer = require('multer');
-const sqlite3 = require('sqlite3').verbose();
+const initSqlJs = require('sql.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -49,36 +49,58 @@ const DATA_DIR = path.join(__dirname, 'data');
 const DB_FILE = path.join(DATA_DIR, 'dotdirection.sqlite');
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
-const db = new sqlite3.Database(DB_FILE, (err) => {
-  if (err) {
-    console.error('[DB] SQLite connection failed:', err.message);
-  } else {
-    console.log(`[DB] SQLite connected: ${DB_FILE}`);
+let db;
+
+const persistDb = () => {
+  if (!db) return;
+  const data = db.export();
+  fs.writeFileSync(DB_FILE, Buffer.from(data));
+};
+
+const normalizeParams = (params = []) => params.map(value => (value === undefined ? null : value));
+
+const rowToObject = (columns, row) => columns.reduce((acc, column, index) => {
+  acc[column] = row[index];
+  return acc;
+}, {});
+
+const all = async (sql, params = []) => {
+  const statement = db.prepare(sql);
+  statement.bind(normalizeParams(params));
+  const rows = [];
+  while (statement.step()) {
+    rows.push(rowToObject(statement.getColumnNames(), statement.get()));
   }
-});
+  statement.free();
+  return rows;
+};
 
-const run = (sql, params = []) => new Promise((resolve, reject) => {
-  db.run(sql, params, function onRun(err) {
-    if (err) reject(err);
-    else resolve({ id: this.lastID, changes: this.changes });
-  });
-});
+const get = async (sql, params = []) => {
+  const rows = await all(sql, params);
+  return rows[0];
+};
 
-const all = (sql, params = []) => new Promise((resolve, reject) => {
-  db.all(sql, params, (err, rows) => {
-    if (err) reject(err);
-    else resolve(rows);
-  });
-});
+const run = async (sql, params = []) => {
+  db.run(sql, normalizeParams(params));
+  const idRow = db.exec('SELECT last_insert_rowid() AS id');
+  const changesRow = db.exec('SELECT changes() AS changes');
+  persistDb();
+  return {
+    id: idRow[0] ? idRow[0].values[0][0] : undefined,
+    changes: changesRow[0] ? changesRow[0].values[0][0] : 0
+  };
+};
 
-const get = (sql, params = []) => new Promise((resolve, reject) => {
-  db.get(sql, params, (err, row) => {
-    if (err) reject(err);
-    else resolve(row);
-  });
-});
+const initDb = async () => {
+  const SQL = await initSqlJs();
+  if (fs.existsSync(DB_FILE)) {
+    db = new SQL.Database(fs.readFileSync(DB_FILE));
+    console.log(`[DB] sql.js SQLite loaded: ${DB_FILE}`);
+  } else {
+    db = new SQL.Database();
+    console.log(`[DB] sql.js SQLite created: ${DB_FILE}`);
+  }
 
-db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS leads (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -137,6 +159,22 @@ db.serialize(() => {
     createdAt TEXT NOT NULL,
     updatedAt TEXT NOT NULL
   )`);
+
+  persistDb();
+};
+
+const dbReady = initDb().catch(err => {
+  console.error('[DB] sql.js initialization failed:', err.message);
+  process.exit(1);
+});
+
+app.use(async (req, res, next) => {
+  try {
+    await dbReady;
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 // ============================================================
