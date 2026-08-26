@@ -108,7 +108,7 @@ All submissions are stored in **Hostinger MySQL**. Tables are auto-created on fi
 Set these environment variables in Hostinger before starting the app:
 
 ```bash
-MYSQL_HOST=localhost
+MYSQL_HOST=127.0.0.1
 MYSQL_PORT=3306
 MYSQL_DATABASE=u430066163_dotdirection
 MYSQL_USER=u430066163_dotdirection
