@@ -1,0 +1,44 @@
+<%- include('../../partials/head.ejs') %>
+
+<body class="font-sans bg-[#F8F9FA] text-[#333333] selection:bg-metallic-light selection:text-white">
+    <%- include('../../partials/admin-header.ejs') %>
+    <main class="py-10">
+        <div class="container mx-auto px-6 md:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+                <div>
+                    <h1 class="font-serif text-4xl font-bold text-gray-900">Manage Blogs</h1>
+                    <p class="text-gray-500 mt-2">Create, edit, publish and delete blog posts.</p>
+                </div>
+                <a href="/admin/blogs/new" class="bg-metallic hover:bg-metallic-hover text-white px-5 py-3 rounded-xl font-bold shadow-md">New Blog</a>
+            </div>
+
+            <% if (blogs.length === 0) { %>
+                <div class="bg-white rounded-2xl border border-gray-100 p-12 text-center text-gray-400">No blogs created yet.</div>
+            <% } else { %>
+                <div class="bg-white rounded-2xl border border-gray-100 overflow-x-auto shadow-sm">
+                    <table class="w-full text-left min-w-[850px]">
+                        <thead class="bg-gray-50 border-b border-gray-100"><tr class="text-xs font-bold uppercase tracking-wider text-gray-500"><th class="px-6 py-4">Title</th><th class="px-6 py-4">Slug</th><th class="px-6 py-4">Status</th><th class="px-6 py-4">Updated</th><th class="px-6 py-4 text-right">Actions</th></tr></thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <% blogs.forEach(blog => { %>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 font-bold text-gray-900"><%= blog.title %></td>
+                                <td class="px-6 py-4 text-sm text-gray-500"><%= blog.slug %></td>
+                                <td class="px-6 py-4"><span class="text-xs font-bold uppercase px-2.5 py-1 rounded <%= blog.status === 'published' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700' %>"><%= blog.status %></span></td>
+                                <td class="px-6 py-4 text-sm text-gray-500"><%= new Date(blog.updatedAt).toLocaleString() %></td>
+                                <td class="px-6 py-4">
+                                    <div class="flex justify-end gap-2">
+                                        <% if (blog.status === 'published') { %><a href="/blogs/<%= blog.slug %>" target="_blank" class="text-xs font-bold rounded-lg px-3 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200">View</a><% } %>
+                                        <a href="/admin/blogs/<%= blog.id %>/edit" class="text-xs font-bold rounded-lg px-3 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100">Edit</a>
+                                        <form action="/admin/blogs/<%= blog.id %>/delete" method="POST" onsubmit="return confirm('Delete this blog?')"><button type="submit" class="text-xs font-bold rounded-lg px-3 py-2 bg-red-50 text-red-700 hover:bg-red-100">Delete</button></form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>

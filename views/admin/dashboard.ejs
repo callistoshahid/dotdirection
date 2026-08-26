@@ -1,0 +1,80 @@
+<%- include('../partials/head.ejs') %>
+
+<body class="font-sans bg-[#F8F9FA] text-[#333333] selection:bg-metallic-light selection:text-white">
+    <%- include('../partials/admin-header.ejs') %>
+
+    <main class="py-10">
+        <div class="container mx-auto px-6 md:px-8">
+            <div class="mb-8">
+                <h1 class="font-serif text-4xl font-bold text-gray-900">Admin Dashboard</h1>
+                <p class="text-gray-500 mt-2">Overview of website activity and content.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+                <a href="/admin/leads" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-xs uppercase tracking-widest font-bold text-gray-400">Popup Leads</p>
+                    <p class="text-4xl font-bold text-gray-900 mt-2"><%= counts.leads %></p>
+                </a>
+                <a href="/admin/leads" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-xs uppercase tracking-widest font-bold text-gray-400">Bookings</p>
+                    <p class="text-4xl font-bold text-gray-900 mt-2"><%= counts.bookings %></p>
+                </a>
+                <a href="/admin/leads" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-xs uppercase tracking-widest font-bold text-gray-400">Applications</p>
+                    <p class="text-4xl font-bold text-gray-900 mt-2"><%= counts.applications %></p>
+                </a>
+                <a href="/admin/blogs" class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <p class="text-xs uppercase tracking-widest font-bold text-gray-400">Blogs</p>
+                    <p class="text-4xl font-bold text-gray-900 mt-2"><%= counts.blogs %></p>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="font-serif text-2xl font-bold text-gray-900">Recent Leads</h2>
+                        <a href="/admin/leads" class="text-metallic font-semibold text-sm hover:underline">View all</a>
+                    </div>
+                    <% if (recentLeads.length === 0) { %>
+                        <p class="text-gray-400 text-sm">No leads yet.</p>
+                    <% } else { %>
+                        <div class="space-y-3">
+                            <% recentLeads.forEach(lead => { %>
+                                <div class="flex items-center justify-between bg-gray-50 rounded-xl p-4">
+                                    <div>
+                                        <p class="font-bold text-gray-900"><%= lead.name %></p>
+                                        <p class="text-sm text-gray-500"><%= lead.phone %></p>
+                                    </div>
+                                    <span class="text-xs font-bold uppercase text-metallic"><%= lead.status %></span>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </section>
+
+                <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="font-serif text-2xl font-bold text-gray-900">Recent Blogs</h2>
+                        <a href="/admin/blogs/new" class="bg-metallic hover:bg-metallic-hover text-white px-4 py-2 rounded-lg font-semibold text-sm">New Blog</a>
+                    </div>
+                    <% if (recentBlogs.length === 0) { %>
+                        <p class="text-gray-400 text-sm">No blogs yet.</p>
+                    <% } else { %>
+                        <div class="space-y-3">
+                            <% recentBlogs.forEach(blog => { %>
+                                <div class="flex items-center justify-between bg-gray-50 rounded-xl p-4">
+                                    <div>
+                                        <p class="font-bold text-gray-900"><%= blog.title %></p>
+                                        <p class="text-xs text-gray-500"><%= blog.slug %></p>
+                                    </div>
+                                    <span class="text-xs font-bold uppercase <%= blog.status === 'published' ? 'text-green-600' : 'text-amber-600' %>"><%= blog.status %></span>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

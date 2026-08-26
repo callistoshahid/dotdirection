@@ -1,0 +1,35 @@
+<%- include('../partials/head.ejs') %>
+
+<body class="font-sans bg-[#F8F9FA] text-[#333333] selection:bg-metallic-light selection:text-white">
+    <main class="min-h-screen flex items-center justify-center p-6">
+        <div class="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
+            <div class="text-center mb-8">
+                <img src="<%= site.logoBlue %>" alt="Dot Direction" class="h-10 mx-auto mb-5" />
+                <span class="inline-block bg-metallic text-white rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase mb-4">Admin Login</span>
+                <h1 class="font-serif text-3xl font-bold text-gray-900">Welcome Back</h1>
+                <p class="text-gray-500 text-sm mt-2">Login to manage leads and blogs.</p>
+            </div>
+
+            <% if (error) { %>
+                <div class="bg-red-50 text-red-700 border border-red-100 rounded-xl p-3 text-sm mb-5"><%= error %></div>
+            <% } %>
+
+            <form action="/admin/login" method="POST" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Admin ID</label>
+                    <input type="text" name="adminId" required autocomplete="username" placeholder="admin"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Password</label>
+                    <input type="password" name="password" required autocomplete="current-password" placeholder="••••••••"
+                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50">
+                </div>
+                <button type="submit" class="w-full bg-slate-850 hover:bg-slate-900 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all">Login</button>
+            </form>
+
+            <p class="text-xs text-gray-400 text-center mt-6">Set production credentials with <code>ADMIN_ID</code> and <code>ADMIN_PASSWORD</code>.</p>
+        </div>
+    </main>
+</body>
+</html>

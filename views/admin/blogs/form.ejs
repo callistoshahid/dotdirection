@@ -1,0 +1,45 @@
+<%- include('../../partials/head.ejs') %>
+
+<body class="font-sans bg-[#F8F9FA] text-[#333333] selection:bg-metallic-light selection:text-white">
+    <%- include('../../partials/admin-header.ejs') %>
+    <main class="py-10">
+        <div class="container mx-auto px-6 md:px-8 max-w-5xl">
+            <div class="mb-8">
+                <a href="/admin/blogs" class="text-metallic font-semibold text-sm hover:underline">← Back to Blogs</a>
+                <h1 class="font-serif text-4xl font-bold text-gray-900 mt-3"><%= blog ? 'Edit Blog' : 'Create Blog' %></h1>
+            </div>
+
+            <form action="<%= action %>" method="POST" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 space-y-6">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Title *</label>
+                    <input name="title" required value="<%= blog ? blog.title : '' %>" placeholder="Blog title" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Excerpt</label>
+                    <textarea name="excerpt" rows="3" placeholder="Short summary shown on blog list" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50"><%= blog ? blog.excerpt : '' %></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Cover Image URL</label>
+                    <input name="coverImage" value="<%= blog ? blog.coverImage : '' %>" placeholder="/image%20(8).jpg or https://..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Content *</label>
+                    <textarea name="content" rows="14" required placeholder="Write the blog content here..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50"><%= blog ? blog.content : '' %></textarea>
+                    <p class="text-xs text-gray-400 mt-2">Line breaks will be preserved on the public blog page.</p>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Status</label>
+                    <select name="status" class="w-full md:w-64 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-metallic/50">
+                        <option value="draft" <%= blog && blog.status === 'draft' ? 'selected' : '' %>>Draft</option>
+                        <option value="published" <%= blog && blog.status === 'published' ? 'selected' : '' %>>Published</option>
+                    </select>
+                </div>
+                <div class="flex gap-3 pt-4 border-t border-gray-100">
+                    <button type="submit" class="bg-metallic hover:bg-metallic-hover text-white px-6 py-3 rounded-xl font-bold shadow-md"><%= submitLabel %></button>
+                    <a href="/admin/blogs" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-bold">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

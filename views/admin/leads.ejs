@@ -1,50 +1,52 @@
 <%- include('../partials/head.ejs') %>
 
 <body class="font-sans text-[#333333] bg-[#F8F9FA] selection:bg-metallic-light selection:text-white">
+    <%- include('../partials/admin-header.ejs') %>
 
-    <%- include('../partials/navbar.ejs') %>
-
-    <main class="pt-28 md:pt-36 pb-20">
+    <main class="py-10">
         <div class="container mx-auto px-6 md:px-8">
-
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="inline-block bg-metallic text-white rounded-full px-4 py-1.5 text-xs font-bold tracking-widest uppercase mb-4">Admin</span>
-                <h1 class="font-serif text-3xl md:text-5xl font-bold text-gray-900 mb-4">Leads & Inquiries</h1>
-                <p class="text-gray-600 font-light">All submissions from the website forms are listed here.</p>
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+                <div>
+                    <h1 class="font-serif text-4xl font-bold text-gray-900">Leads & Inquiries</h1>
+                    <p class="text-gray-500 mt-2">Manage popup leads, booking requests, and photographer applications.</p>
+                </div>
+                <a href="/admin/dashboard" class="bg-white border border-gray-200 text-gray-700 px-5 py-3 rounded-xl font-semibold hover:bg-gray-50">Back to Dashboard</a>
             </div>
 
-            <!-- Quick Lead Form Submissions -->
-            <section class="mb-16">
-                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    Popup Leads
-                    <span class="bg-metallic text-white text-xs font-bold px-2.5 py-1 rounded-full"><%= leads.length %></span>
-                </h2>
-
+            <section class="mb-12">
+                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-5 flex items-center gap-3">Popup Leads <span class="bg-metallic text-white text-xs font-bold px-2.5 py-1 rounded-full"><%= leads.length %></span></h2>
                 <% if (leads.length === 0) { %>
-                    <div class="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-400">
-                        <i data-lucide="inbox" class="w-10 h-10 mx-auto mb-4"></i>
-                        <p>No popup leads yet.</p>
-                    </div>
+                    <div class="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-400">No popup leads yet.</div>
                 <% } else { %>
-                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-                        <table class="w-full text-left">
+                    <div class="bg-white rounded-2xl border border-gray-100 overflow-x-auto shadow-sm">
+                        <table class="w-full text-left min-w-[760px]">
                             <thead class="bg-gray-50 border-b border-gray-100">
                                 <tr class="text-xs font-bold uppercase tracking-wider text-gray-500">
                                     <th class="px-6 py-4">Name</th>
                                     <th class="px-6 py-4">Phone</th>
-                                    <th class="px-6 py-4">Source</th>
+                                    <th class="px-6 py-4">Status</th>
                                     <th class="px-6 py-4">Submitted At</th>
+                                    <th class="px-6 py-4 text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
-                                <% leads.slice().reverse().forEach(lead => { %>
+                                <% leads.forEach(lead => { %>
                                 <tr class="hover:bg-gray-50 transition-colors">
                                     <td class="px-6 py-4 font-medium text-gray-900"><%= lead.name %></td>
-                                    <td class="px-6 py-4 text-gray-600"><%= lead.phone %></td>
-                                    <td class="px-6 py-4">
-                                        <span class="bg-metallic/10 text-metallic text-xs font-bold px-2.5 py-1 rounded uppercase"><%= lead.source %></span>
-                                    </td>
+                                    <td class="px-6 py-4 text-gray-600"><a href="tel:<%= lead.phone %>" class="hover:text-metallic"><%= lead.phone %></a></td>
+                                    <td class="px-6 py-4"><span class="text-xs font-bold px-2.5 py-1 rounded uppercase <%= lead.status === 'contacted' ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700' %>"><%= lead.status %></span></td>
                                     <td class="px-6 py-4 text-gray-500 text-sm"><%= new Date(lead.createdAt).toLocaleString() %></td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex justify-end gap-2">
+                                            <form action="/admin/leads/<%= lead.id %>/status" method="POST">
+                                                <input type="hidden" name="status" value="<%= lead.status === 'contacted' ? 'new' : 'contacted' %>">
+                                                <button class="text-xs font-bold rounded-lg px-3 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100" type="submit"><%= lead.status === 'contacted' ? 'Mark New' : 'Mark Contacted' %></button>
+                                            </form>
+                                            <form action="/admin/leads/<%= lead.id %>/delete" method="POST" onsubmit="return confirm('Delete this lead?')">
+                                                <button class="text-xs font-bold rounded-lg px-3 py-2 bg-red-50 text-red-700 hover:bg-red-100" type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <% }); %>
                             </tbody>
@@ -53,37 +55,17 @@
                 <% } %>
             </section>
 
-            <!-- Booking Requests -->
-            <section class="mb-16">
-                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    Booking Requests
-                    <span class="bg-metallic text-white text-xs font-bold px-2.5 py-1 rounded-full"><%= bookings.length %></span>
-                </h2>
-
+            <section class="mb-12">
+                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-5 flex items-center gap-3">Booking Requests <span class="bg-metallic text-white text-xs font-bold px-2.5 py-1 rounded-full"><%= bookings.length %></span></h2>
                 <% if (bookings.length === 0) { %>
-                    <div class="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-400">
-                        <i data-lucide="calendar" class="w-10 h-10 mx-auto mb-4"></i>
-                        <p>No booking requests yet.</p>
-                    </div>
+                    <div class="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-400">No booking requests yet.</div>
                 <% } else { %>
-                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
-                        <table class="w-full text-left">
-                            <thead class="bg-gray-50 border-b border-gray-100">
-                                <tr class="text-xs font-bold uppercase tracking-wider text-gray-500">
-                                    <th class="px-6 py-4">Service</th>
-                                    <th class="px-6 py-4">Location</th>
-                                    <th class="px-6 py-4">Date</th>
-                                    <th class="px-6 py-4">Submitted At</th>
-                                </tr>
-                            </thead>
+                    <div class="bg-white rounded-2xl border border-gray-100 overflow-x-auto shadow-sm">
+                        <table class="w-full text-left min-w-[720px]">
+                            <thead class="bg-gray-50 border-b border-gray-100"><tr class="text-xs font-bold uppercase tracking-wider text-gray-500"><th class="px-6 py-4">Service</th><th class="px-6 py-4">Location</th><th class="px-6 py-4">Date</th><th class="px-6 py-4">Submitted At</th></tr></thead>
                             <tbody class="divide-y divide-gray-100">
-                                <% bookings.slice().reverse().forEach(b => { %>
-                                <tr class="hover:bg-gray-50 transition-colors">
-                                    <td class="px-6 py-4 font-medium text-gray-900"><%= b.service %></td>
-                                    <td class="px-6 py-4 text-gray-600"><%= b.location %></td>
-                                    <td class="px-6 py-4 text-gray-600"><%= b.date %></td>
-                                    <td class="px-6 py-4 text-gray-500 text-sm"><%= new Date(b.createdAt).toLocaleString() %></td>
-                                </tr>
+                                <% bookings.forEach(b => { %>
+                                    <tr><td class="px-6 py-4 font-medium"><%= b.service %></td><td class="px-6 py-4"><%= b.location %></td><td class="px-6 py-4"><%= b.date %></td><td class="px-6 py-4 text-gray-500 text-sm"><%= new Date(b.createdAt).toLocaleString() %></td></tr>
                                 <% }); %>
                             </tbody>
                         </table>
@@ -91,52 +73,23 @@
                 <% } %>
             </section>
 
-            <!-- Photographer Applications -->
             <section>
-                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    Photographer Applications
-                    <span class="bg-metallic text-white text-xs font-bold px-2.5 py-1 rounded-full"><%= applications.length %></span>
-                </h2>
-
+                <h2 class="font-serif text-2xl font-bold text-gray-900 mb-5 flex items-center gap-3">Photographer Applications <span class="bg-metallic text-white text-xs font-bold px-2.5 py-1 rounded-full"><%= applications.length %></span></h2>
                 <% if (applications.length === 0) { %>
-                    <div class="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-400">
-                        <i data-lucide="users" class="w-10 h-10 mx-auto mb-4"></i>
-                        <p>No photographer applications yet.</p>
-                    </div>
+                    <div class="bg-white rounded-2xl border border-gray-100 p-10 text-center text-gray-400">No photographer applications yet.</div>
                 <% } else { %>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <% applications.slice().reverse().forEach(a => { %>
+                        <% applications.forEach(a => { %>
                         <div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-                            <div class="flex items-start justify-between mb-4">
-                                <div>
-                                    <h3 class="font-bold text-gray-900"><%= a.legalName %></h3>
-                                    <p class="text-sm text-gray-500"><%= a.city %> · <%= a.experience %></p>
-                                </div>
-                                <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded uppercase shrink-0"><%= a.status %></span>
-                            </div>
-                            <div class="space-y-2 text-sm text-gray-600">
-                                <p><span class="font-semibold text-gray-800">Phone:</span> <%= a.phone %></p>
-                                <p><span class="font-semibold text-gray-800">Email:</span> <%= a.email %></p>
-                                <p><span class="font-semibold text-gray-800">Categories:</span> <%= (a.categories || []).join(', ') %></p>
-                                <% if (a.govIdFile) { %>
-                                    <p><span class="font-semibold text-gray-800">Gov ID:</span> <a href="<%= a.govIdFile %>" target="_blank" class="text-metallic hover:underline">View file</a></p>
-                                <% } %>
-                            </div>
+                            <div class="flex items-start justify-between mb-4"><div><h3 class="font-bold text-gray-900"><%= a.legalName %></h3><p class="text-sm text-gray-500"><%= a.city %> · <%= a.experience %></p></div><span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded uppercase shrink-0"><%= a.status %></span></div>
+                            <div class="space-y-2 text-sm text-gray-600"><p><b>Phone:</b> <%= a.phone %></p><p><b>Email:</b> <%= a.email %></p><p><b>Categories:</b> <%= (a.categories || []).join(', ') %></p><% if (a.govIdFile) { %><p><b>Gov ID:</b> <a href="<%= a.govIdFile %>" target="_blank" class="text-metallic hover:underline">View file</a></p><% } %></div>
                         </div>
                         <% }); %>
                     </div>
                 <% } %>
             </section>
-
         </div>
     </main>
-
-    <%- include('../partials/footer.ejs') %>
-    <%- include('../partials/scripts-common.ejs') %>
-
-    <script>
-        lucide.createIcons();
-    </script>
-
+    <script src="https://unpkg.com/lucide@latest"></script><script>lucide.createIcons();</script>
 </body>
 </html>

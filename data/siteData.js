@@ -42,6 +42,7 @@ module.exports = {
     { label: 'Services', href: '/#services' },
     { label: 'Pricing', href: '/#pricing' },
     { label: 'Reviews', href: '/#reviews' },
+    { label: 'Blogs', href: '/blogs' },
     { label: 'Apply to Join', href: '/join-as-photographer' }
   ],
 
@@ -339,6 +340,7 @@ module.exports = {
       { label: 'About Us', href: '#' },
       { label: 'How it Works', href: '/#how-it-works' },
       { label: 'Pricing in INR', href: '/#pricing' },
+      { label: 'Blogs', href: '/blogs' },
       { label: 'Careers in India', href: '#' }
     ],
     professionals: [
