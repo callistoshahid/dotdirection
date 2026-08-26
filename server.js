@@ -11,7 +11,8 @@ const SITE_URL = (process.env.SITE_URL || 'https://dotdirections.com').replace(/
 const ADMIN_ID = process.env.ADMIN_ID || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'dot-direction-change-this-secret';
-const MYSQL_HOST = process.env.MYSQL_HOST || '127.0.0.1';
+const RAW_MYSQL_HOST = process.env.MYSQL_HOST || '127.0.0.1';
+const MYSQL_HOST = RAW_MYSQL_HOST === 'localhost' ? '127.0.0.1' : RAW_MYSQL_HOST;
 const MYSQL_PORT = Number(process.env.MYSQL_PORT || 3306);
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE || 'u430066163_dotdirection';
 const MYSQL_USER = process.env.MYSQL_USER || 'u430066163_dotdirection';
@@ -677,6 +678,7 @@ app.listen(PORT, () => {
   console.log(`\n🚀 Dot Direction server running at http://localhost:${PORT}`);
   console.log(`   Homepage: http://localhost:${PORT}/`);
   console.log(`   Admin: http://localhost:${PORT}/admin/login`);
+  console.log(`   MySQL: ${MYSQL_USER}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DATABASE}`);
   console.log(`   Default admin: ${ADMIN_ID} / ${ADMIN_PASSWORD}\n`);
 });
 
